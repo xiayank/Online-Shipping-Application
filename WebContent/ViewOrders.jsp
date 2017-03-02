@@ -1,0 +1,130 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>View Orders</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+     .container {
+      padding: 80px 10px;
+  }
+  </style>    
+
+    
+</head>
+<body>
+<!-- navbar-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SHOPPING YOU WANT!</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">New Arrive</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MEN<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">WOMEN<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">KIDS<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>    
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="Home.jsp"><span class="glyphicon glyphicon-user"></span> Home</a></li>
+      <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
+      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+    </ul>
+  </div>
+</nav>
+<!--results -->
+<div class="container ">
+    <div class="text-center">
+  <h2>Here are your orders</h2>
+  
+  <br>
+    </div>
+    <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Order number</th>
+        <th>Order Total</th>
+        <th>Ordered date</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="col-sm-12">
+      <a href="#demo3" data-toggle="collapse">
+        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="255" height="255">
+      </a>
+      </div>
+        </td>
+        <td>2461419203</td>
+        <td>$199</td>
+        <td>1/1/2017</td>
+        <td></td>
+        <td><a href="ManageOrders.jsp" type="button" class="btn btn-success">View </a></td>
+      </tr>
+    <tr>
+        <td><div class="col-sm-12">
+      <a href="#demo3" data-toggle="collapse">
+        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="255" height="255">
+      </a>
+      </div>
+        </td>
+        <td>2461419203</td>
+        <td>$199</td>
+        <td>1/1/2017</td>
+        <td></td>
+        <td><a href="ManageOrders.jsp" type="button" class="btn btn-success">View </a></td>
+      </tr>
+    <tr>
+        <td><div class="col-sm-12">
+      <a href="#demo3" data-toggle="collapse">
+        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="255" height="255">
+      </a>
+      </div>
+        </td>
+        <td>2461419203</td>
+        <td>$199</td>
+        <td>1/1/2017</td>
+        <td></td>
+        <td><a href="ManageOrders.jsp" type="button" class="btn btn-success">View </a></td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>
+
+    
+    
+</body>
+</html>
