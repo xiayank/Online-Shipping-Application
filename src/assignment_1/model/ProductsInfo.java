@@ -12,7 +12,7 @@ public class ProductsInfo {
 		return sellerName;
 	}
 
-
+//test
 	public void setSellerName(String sellerName) {
 		this.sellerName = sellerName;
 	}
