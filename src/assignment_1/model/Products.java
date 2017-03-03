@@ -12,7 +12,7 @@ public class Products {
 	int availableQuantity;
 	int sellerId;
 	String productThumbnail;
-	
+	//yan comments
 	String sellerName;
 	String productCategory;
 	String reviewDate;
