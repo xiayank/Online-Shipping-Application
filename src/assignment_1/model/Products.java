@@ -3,6 +3,7 @@ package assignment_1.model;
 import java.util.ArrayList;
 
 public class Products {
+	//first test of github
 	int ID;
 	String productName;
 	int productCategoryIndex;
