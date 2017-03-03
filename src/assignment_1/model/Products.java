@@ -3,8 +3,7 @@ package assignment_1.model;
 import java.util.ArrayList;
 
 public class Products {
-	//first test of github
-	//second test of github
+	
 	int ID;
 	String productName;
 	int productCategoryIndex;
@@ -13,7 +12,7 @@ public class Products {
 	int availableQuantity;
 	int sellerId;
 	String productThumbnail;
-	//yan comments
+	
 	String sellerName;
 	String productCategory;
 	String reviewDate;
