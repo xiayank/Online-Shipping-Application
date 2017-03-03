@@ -21,7 +21,7 @@ public class Users {
 	
 	private String userName;
 	private String password;
-	private int type; //customer = 1, seller = 0
+	private int type; //customer = 1, seller = 2
 	
 	public Users() {
 		super();
