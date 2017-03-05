@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -407,38 +408,39 @@ hr{
     				<thead>
 						<tr>
 							<th style="width:40%">Product</th>
-                            <th style="width:10%">Seller</th>
-							<th style="width:10%">Price</th>
+                            <th style="width:21%">Seller</th>
+							<th style="width:21%">Price</th>
 							<th style="width:8%">Quantity</th>
-							<th style="width:22%" class="text-center">Subtotal</th>
+							
 							<th style="width:10%"></th>
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach var = "aShoppingCarProduct" items = "${shoppingCartList}">
 						<tr>
 							<td data-th="Product">
 								<div class="row">
 									
 									<div class="col-sm-10">
-										<h4 class="nomargin">Adidas Running shoe</h4>
+										<h4 class="nomargin">${aShoppingCarProduct.aProduct.productName}</h4>
 										<p></p>
 									</div>
 								</div>
 							</td>
-                            <td data-th="Seller">Adidas</td>
-							<td data-th="Price">$199</td>
-                            <td data-th="Price">1</td>
+                            <td data-th="Seller">${aShoppingCarProduct.aProduct.sellerName}</td>
+							<td data-th="Price">${aShoppingCarProduct.aProduct.price}$</td>
+                            <td data-th="Quantity">${aShoppingCarProduct.requestQuantity}</td>
 							
-							<td data-th="Subtotal" class="text-center">199</td>
 							
 						</tr>
+						</c:forEach>	
 					</tbody>
 					<tfoot>
                         
 						<tr>
-							<td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Go back to cart</a></td>
-							<td colspan="3" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><h1>Total $199</h1></td>
+							<td><a href="ShoppingCart.jsp" class="btn btn-warning"><i class="fa fa-angle-left"></i> Go back to cart</a></td>
+							<td colspan="2" class="hidden-xs"></td>
+							<td colspan="3" class="hidden-xs text-center"><h2>Total Cost: ${totalCost}$</h2> </td>
 							
 						</tr>
 					</tfoot>
@@ -446,6 +448,9 @@ hr{
     </div>
    
                     <!--SHIPPING METHOD-->
+                    
+                    <form action="TransactionConfirmation" method = "post">
+                    
  <div class="panel panel-info container col-sm-6 ">
                         <div class="panel-heading">Address</div>
                         <div class="panel-body">
@@ -454,12 +459,7 @@ hr{
                                     <h4>Shipping Address</h4>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Country:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" name="country" value="" />
-                                </div>
-                            </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-6 col-xs-12">
                                     <strong>First Name:</strong>
@@ -499,10 +499,7 @@ hr{
                                 <div class="col-md-12"><strong>Phone Number:</strong></div>
                                 <div class="col-md-12"><input type="text" name="phone_number" class="form-control" value="" /></div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Email Address:</strong></div>
-                                <div class="col-md-12"><input type="text" name="email_address" class="form-control" value="" /></div>
-                            </div>
+                            
                         </div>
                         </div>
     <!--payment-->
@@ -512,11 +509,11 @@ hr{
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Card Type:</strong></div>
                                 <div class="col-md-12">
-                                    <select id="CreditCardType" name="CreditCardType" class="form-control">
-                                        <option value="5">Visa</option>
-                                        <option value="6">MasterCard</option>
-                                        <option value="7">American Express</option>
-                                        <option value="8">Discover</option>
+                                    <select id="CreditCardType" name="cardType" class="form-control">
+                                        <option value="visa">Visa</option>
+                                        <option value="masterCard">MasterCard</option>
+                                        <option value="americanExpress">American Express</option>
+                                        <option value="discover">Discover</option>
                                     </select>
                                 </div>
                             </div>
@@ -526,14 +523,14 @@ hr{
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Card CVV:</strong></div>
-                                <div class="col-md-12"><input type="text" class="form-control" name="car_code" value="" /></div>
+                                <div class="col-md-12"><input type="text" class="form-control" name="cVV" value="" /></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <strong>Expiration Date</strong>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="">
+                                    <select class="form-control" name="month">
                                         <option value="">Month</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -550,7 +547,7 @@ hr{
                                 </select>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="">
+                                    <select class="form-control" name="year">
                                         <option value="">Year</option>
                                         <option value="2015">2015</option>
                                         <option value="2016">2016</option>
@@ -584,8 +581,11 @@ hr{
                         </div>
                         <div class="form-group ">
                                 <div class="col-md-8 col-sm-6 ">
-                                    <a href =TransactionConfirmation.jsp class="btn btn-primary btn-submit-fix">Confirm Payment</a><br>
-                                    <a href="ShoppingCart.jsp" class="btn btn-success btn-block"> Cancel Payment</a>
+                               		 <button type="submit" class="btn btn-primary btn-submit-fix">Confirm Payment</button>
+                                    
+                                    </form>
+                                    <a href =ShoppingCart.jsp class="btn btn-success btn-block">Cancel Payment</a><br>
+                                    
                                 </div>
                                 
                             </div>
