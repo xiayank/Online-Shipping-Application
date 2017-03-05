@@ -39,21 +39,71 @@ public class UpdateShoppingCart extends HttpServlet {
 		if(session.getAttribute("shoppingCartList") == null){
 			shoppingCartList = new ArrayList<ShoppingCartBean>();
 			//session.setAttribute("shoppingCartList", shoppingCartList);
-			System.out.println("session null");
+			//System.out.println("session null");
 		}else{
-			System.out.println("session exits");
+			//System.out.println("session exits");
 			shoppingCartList = (ArrayList<ShoppingCartBean>) session.getAttribute("shoppingCartList");
 		}
+		
+		String stringDeleteID = request.getParameter("deleteID");
+		
+		//Execute delete function
+		if(stringDeleteID != null){
+			int DeleteID = Integer.parseInt(stringDeleteID);
+			for(ShoppingCartBean aShoppingCartItem :shoppingCartList ){
+				int existID = aShoppingCartItem.getaProduct().getID();
+				if(existID == DeleteID){
+					shoppingCartList.remove(aShoppingCartItem);
+					break;
+				}
+				
+			}
+			
+		}else{
+			//execute add product function
+		
 		//get ID of the product which has been click to add to cart
 		int id = Integer.parseInt(request.getParameter("ID"));
-		//get the product by ID
-		aProduct =aProduct.returnProductsByID(id);
 		
 		//get request quantity
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
-		ShoppingCartBean aShoppingCart = new ShoppingCartBean(aProduct, quantity);
-		shoppingCartList.add(aShoppingCart);
+		//if the product exist in cart now, add the quantity 
+		boolean addedBefore = false;
+		for(ShoppingCartBean aShoppingCartItem :shoppingCartList ){
+			int existID = aShoppingCartItem.getaProduct().getID();
+			if(existID == id){
+				int existQuantity = aShoppingCartItem.getRequestQuantity();
+				aShoppingCartItem.setRequestQuantity(quantity + existQuantity);
+				addedBefore = true;
+				break;
+			}
+		}
+		
+		if(!addedBefore){
+			//get the product by ID
+			aProduct =aProduct.returnProductsByID(id);
+			ShoppingCartBean aShoppingCart = new ShoppingCartBean(aProduct, quantity);
+			shoppingCartList.add(aShoppingCart);
+			}
+		}// finish add function
+		
+		
+		//check the available quantity, the quantity at most equal to available quantity
+		for(ShoppingCartBean aShoppingCartItem :shoppingCartList ){
+			int aAvailableQuantity = aShoppingCartItem.getaProduct().getAvailableQuantity(); 
+			if(aAvailableQuantity < aShoppingCartItem.getRequestQuantity()){
+				aShoppingCartItem.setRequestQuantity(aAvailableQuantity);
+			}
+			
+		}
+		
+		int sum = 0;
+		//calculate the total cost
+		for(ShoppingCartBean aShoppingCartItem :shoppingCartList ){
+			sum  +=  aShoppingCartItem.getRequestQuantity() * aShoppingCartItem.getaProduct().getPrice();
+		}
+		session.setAttribute("totalCost", sum);
 		
 		session.setAttribute("shoppingCartList", shoppingCartList);
 		//System.out.println(quantity);
