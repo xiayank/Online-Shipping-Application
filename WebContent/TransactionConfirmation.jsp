@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -398,45 +401,59 @@ hr{
     </ul>
   </div>
 </nav>
-    <h2 class="container text-center">Your order has been placed</h2>
+		<%-- <c:set var="guess" value="<c:out value="${validCard}" />"/>
+		<c:choose>
+		  <c:when test="${guess  == 0}">
+		    0
+		  </c:when>
+		  <c:when test="${guess == 1}">
+		    1
+		  </c:when>
+		  <c:otherwise>
+		    2
+		  </c:otherwise>
+		</c:choose> --%>
+    <h1 class="container text-center">Your order has been placed</h1>
     <!--shopping list-->
     <div class="container">
 	<table id="cart" class="table table-hover table-condensed">
     				<thead>
 						<tr>
 							<th style="width:40%">Product</th>
-                            <th style="width:10%">Seller</th>
-							<th style="width:10%">Price</th>
+                            <th style="width:21%">Seller</th>
+							<th style="width:21%">Price</th>
 							<th style="width:8%">Quantity</th>
-							<th style="width:22%" class="text-center">Subtotal</th>
+							
 							<th style="width:10%"></th>
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach var = "aShoppingCarProduct" items = "${shoppingCartList}">
 						<tr>
 							<td data-th="Product">
 								<div class="row">
 									
 									<div class="col-sm-10">
-										<h4 class="nomargin">Adidas Running shoe</h4>
+										<h4 class="nomargin">${aShoppingCarProduct.aProduct.productName}</h4>
 										<p></p>
 									</div>
 								</div>
 							</td>
-                            <td data-th="Seller">Adidas</td>
-							<td data-th="Price">$199</td>
-                            <td data-th="Price">1</td>
+                            <td data-th="Seller">${aShoppingCarProduct.aProduct.sellerName}</td>
+							<td data-th="Price">${aShoppingCarProduct.aProduct.price}$</td>
+                            <td data-th="Quantity">${aShoppingCarProduct.requestQuantity}</td>
 							
-							<td data-th="Subtotal" class="text-center">199</td>
 							
 						</tr>
+						</c:forEach>	
 					</tbody>
 					<tfoot>
                         
 						<tr>
 							
-							<td colspan="4" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><h1>Total $199</h1></td>
+							
+							<td colspan="2" class="hidden-xs"></td>
+							<td colspan="3" class="hidden-xs text-center"><h2>Total Cost: ${totalCost}$</h2> </td>
 							
 						</tr>
 					</tfoot>
@@ -456,53 +473,47 @@ hr{
                                 </div>
                             </div>
                             
-                                <div class="col-md-12"><strong>Country:</strong></div>
-                                <div class="col-md-12">
-                                    <p>USA</p>
-                            
-                            </div>
                             
                                 <div class="col-md-6 col-xs-12">
                                     <strong>First Name:</strong>
-                                    <p>Yan</p>
+                                    <p>${firstName}</p>
                                 </div>
                                 <div class="span1"></div>
                                 <div class="col-md-6 col-xs-12">
                                     <strong>Last Name:</strong>
-                                    <p>Xia</p>
+                                    <p>${lastName}</p>
                                 </div>
                            
                             
                                 <div class="col-md-12"><strong>Address:</strong></div>
                                 <div class="col-md-12">
-                                    <p>2527H ST APT1</p>
+                                    <p>${address}</p>
                                 </div>
                            
                            
                                 <div class="col-md-12"><strong>City:</strong></div>
                                 <div class="col-md-12">
-                                    <p>Lincoln</p>
+                                    <p>${city}</p>
                                 </div>
                             
                             
                                 <div class="col-md-12"><strong>State:</strong></div>
                                 <div class="col-md-12">
-                                    <p>NE</p>
+                                    <p>${state}</p>
                                 </div>
                             
                             
                                 <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
                                 <div class="col-md-12">
-                                    <p>68510</p>
+                                    <p>${zipCode}</p>
                                 </div>
                             
                             
                                 <div class="col-md-12"><strong>Phone Number:</strong></div>
-                                <div class="col-md-12"><p>4018101886</p></div>
+                                <div class="col-md-12"><p>${phoneNumber}</p></div>
                             
                            
-                                <div class="col-md-12"><strong>Email Address:</strong></div>
-                                <div class="col-md-12"><p>yan.xia.cs@gmail.com</p></div>
+                                
                            
                         </div>
                         </div>
