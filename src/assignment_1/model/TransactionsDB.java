@@ -136,29 +136,29 @@ public ArrayList<Transactions>returnAllCreditCardDAO(){
 	    return transactionsList;
 	}
 
-public void connectMeIn() {
-	try{
-		//Register the JDBC driver
-		Class.forName("com.mysql.jdbc.Driver");			
-	}catch(ClassNotFoundException e){
-		System.err.println(e);
-		System.exit (-1);
+	public void connectMeIn() {
+		try{
+			//Register the JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");			
+		}catch(ClassNotFoundException e){
+			System.err.println(e);
+			System.exit (-1);
+		}
+		try {
+			 //Open a connection
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
 	}
-	try {
-		 //Open a connection
-		conn = DriverManager.getConnection(DB_URL, USER, PASS);
-	} catch (SQLException e){
-		e.printStackTrace();
+	
+	
+	public void closeConnection(){
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-}
-
-
-public void closeConnection(){
-	try {
-		conn.close();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-}
 	
 }
