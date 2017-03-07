@@ -47,7 +47,10 @@
               <input type="password" class="form-control" name="psw" 
               placeholder="Enter password">
             </div>
-            
+            register as:<select name="type">
+	      <option value="1">customer
+		  <option value="2">seller
+		</select>
               <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off">
               </span> Register </button>
           </form>

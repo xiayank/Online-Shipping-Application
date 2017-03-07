@@ -24,7 +24,7 @@ public class ProductsDB {
 	static final String USER = "yanx"; // Replace with your CSE_LOGIN
 	static final String PASS = "1127";   // Replace with your CSE MySQL_PASSWORD
 	
-	public ArrayList<Products>returnAllProductsDB(){
+public ArrayList<Products>returnAllProductsDB(){
 		
 		String SQL = "SELECT * from Products";
 	    Statement stat;
@@ -38,11 +38,12 @@ public class ProductsDB {
 				Products aProduct = new Products();//new a product object every iteration 
 				aProduct.setID(rs.getInt(1));
 				aProduct.setProductName(rs.getString(2));
-				aProduct.setProductCategoryIndex(rs.getInt(3));
+			
 				aProduct.setProductDescription(rs.getString(4));
 				aProduct.setPrice(rs.getInt(5));
 				aProduct.setAvailableQuantity(rs.getInt(6));
 				aProduct.setSellerId(rs.getInt(8));
+				aProduct.setProductCategory(rs.getString(3));
 				aProduct.setProductThumbnail(rs.getString(11));
 				
 				productsList.add(aProduct);
@@ -58,35 +59,80 @@ public class ProductsDB {
 		}
 	    
 	    //Add more info from other tables using foreign key
-		for(Products aFullProduct :productsList){
-			ProductsInfo info = new ProductsInfo();
+	//	for(Products aFullProduct :productsList){
+	//		ProductsInfo info = new ProductsInfo();
 			//System.out.println(aFullProduct.productName);
-			String category = info.returnCategoryByCategoryID(aFullProduct.productCategoryIndex);
-			String sellerName = info.returnSellerNameByUserID(aFullProduct.sellerId);
-			ProductsInfo reviewInfo = info.returnReviewBeanByProductID(aFullProduct.ID);
-			ProductsInfo QAInfo = info.returnQABeanByProductID(aFullProduct.ID);
+	//		String category = info.returnCategoryByCategoryID(aFullProduct.productCategoryIndex);
+	//		String sellerName = info.returnSellerNameByUserID(aFullProduct.sellerId);
+	//		ProductsInfo reviewInfo = info.returnReviewBeanByProductID(aFullProduct.ID);
+	//		ProductsInfo QAInfo = info.returnQABeanByProductID(aFullProduct.ID);
 			
 			//set category
-			aFullProduct.setProductCategory(category);
+	//		aFullProduct.setProductCategory(category);
 			//set sellerName
-			aFullProduct.setSellerName(sellerName);
+	//		aFullProduct.setSellerName(sellerName);
+		
 			//set review
-			aFullProduct.setRating(reviewInfo.rating);
-			aFullProduct.setReviewDate(reviewInfo.reviewDate);
-			aFullProduct.setReview(reviewInfo.review);
+	//		aFullProduct.setRating(reviewInfo.rating);
+	//     	aFullProduct.setReviewDate(reviewInfo.reviewDate);
+	//		aFullProduct.setReview(reviewInfo.review);
 			//set QA
-			aFullProduct.setQuestion(QAInfo.question);
-			aFullProduct.setAnswer(QAInfo.answer);
+	//		aFullProduct.setQuestion(QAInfo.question);
+	//		aFullProduct.setAnswer(QAInfo.answer);
 			
-		}
+	//	}
 	    
 	    return productsList;
 	}
+public void editProductsDAO(Products aProduct)  {
 	
+	String SQL = "UPDATE Products SET ProductName = ?, Price = ?, AvailableQuantity = ?, ProductDescription = ?, WHERE SellerId = ? ";
+    try {
+    	String Username = aProduct.getProductName();
+		  int price = aProduct.getPrice();
+		  int quantity = aProduct.getAvailableQuantity();
+		  String description = aProduct.getProductDescription();
+		  ps.setString(2,Username);
+		  ps.setInt(5,price);
+		  ps.setInt(6,quantity);
+		  ps.setString(4,description);
+	    
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
+
+}
 	
-	
-	
+	public void addProductsDAO(Products aProduct){
+		try {
+			  stmt = conn.createStatement();
+			  String sql;
+			  
+			  String ProductName = aProduct.getProductName();
+			  String description = aProduct.getProductDescription();
+			  int price = aProduct.getPrice();
+			  int quantity = aProduct.getAvailableQuantity();
+			  int sellerID = aProduct.getSellerId();
+			  String thumbnail = aProduct.getProductThumbnail();
+			  sql = "INSERT INTO Products (ProductName, Price, AvailableQuantity,sellerId,ProductDescription,ProductThumbnail)" +
+			          "VALUES ('" + ProductName +
+					  "', '" + price + 
+					  "', '" + quantity + 
+					  "', '" + sellerID +
+					  "', '" + description +
+					  "', '" + thumbnail + "')";
+			  
+			 
+			  stmt.executeUpdate(sql);
+			  
+			  
+			  } catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+	}
 	public void connectMeIn() {
 		try{
 			//Register the JDBC driver

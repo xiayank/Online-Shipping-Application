@@ -38,7 +38,32 @@ public class UsersDB {
 			          "VALUES ('" + Username +
 					  "', '" + Password + 
 					  "', '" + 1 + "')";
+			  ResultSet rs = stmt.executeQuery(sql);
+			  aUser.setID(rs.getInt(1));
+			  stmt.executeUpdate(sql);
 			  
+			  
+			  } catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+	}
+	public void addSellerUserDAO(Users aUser2){
+		try {
+			  stmt = conn.createStatement();
+			  String sql;
+			  
+			  String Username = aUser2.getUserName();
+			  String Password = aUser2.getPassword();
+			  
+
+			  sql = "INSERT INTO Users (Username, Password, Type)" +
+			          "VALUES ('" + Username +
+					  "', '" + Password + 
+					  "', '" + 2 + "')";
+			  
+			  ResultSet rs = stmt.executeQuery(sql);
+			  aUser2.setID(rs.getInt(1));
 			  stmt.executeUpdate(sql);
 			  
 			  
@@ -104,12 +129,10 @@ public class UsersDB {
 			
 			while (rs.next()){
 				if(aUserName.equals( rs.getString(14) )) {
-					
-					aUser.setUserId(rs.getInt(1));
+					aUser.setID(rs.getInt(1));
 					aUser.setUserName(rs.getString(14));
 					aUser.setPassword(rs.getString(15));
 					aUser.setType(Integer.parseInt(rs.getString(11)));
-					
 					
 				} 
 		    }

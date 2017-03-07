@@ -36,7 +36,7 @@
    
     <ul class="nav navbar-nav navbar-right">
       <li><a href="ViewCurrentOrders.jsp"><span class="glyphicon glyphicon-user"></span> View Current Order</a></li>
-	  <li><a href="ManageProducts.jsp"><span class="glyphicon glyphicon-user"></span> Manage Products</a></li>
+	  <li><a href="ManageProducts"><span class="glyphicon glyphicon-user"></span> Manage Products</a></li>
       <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
@@ -53,15 +53,15 @@
   </tr>
   <tr>
     
-    <td class="tg-031e" rowspan="1"><a href="http://tinypic.com?ref=313rb4w" target="_blank"><center><img src="Pics/guest.jpg"  border="0" alt="Image and video hosting by TinyPic"></a></center></td>
+      <td class="tg-031e" rowspan="1"><a href="http://tinypic.com?ref=313rb4w" target="_blank"><center><img src="Pics/guest.jpg"  border="0" alt="Image and video hosting by TinyPic"></a></center></td>
    
   </tr>
   
 </table>
-        
-        
-        
+
+    
 	</div>
 	</div>
 </body>
 </html>
+

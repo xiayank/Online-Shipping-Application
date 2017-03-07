@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import assignment_1.model.Orders;
+import assignment_1.model.Products;
 import assignment_1.model.Users;
 
 /**
- * Servlet implementation class ViewOrders
+ * Servlet implementation class AddNewProduct
  */
-@WebServlet("/ViewOrders")
-public class ViewOrders extends HttpServlet {
+@WebServlet("/AddNewProduct")
+public class AddNewProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewOrders() {
+    public AddNewProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +33,28 @@ public class ViewOrders extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String productName = request.getParameter("productname");
+		int price = Integer.parseInt(request.getParameter("price"));
+		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		String description = request.getParameter("Description");
+		String category = request.getParameter("category");
+		String productimage = request.getParameter("productiamge");
 		HttpSession session = request.getSession();
-		Users aUser = (Users) session.getAttribute("userBean");
-		int userId = aUser.getID();
-		Orders anOrders = new Orders();
-		ArrayList<Orders> currentOrdersOfCustomer = anOrders.returnOrderByUserId(userId);
+		Users aUser = (Users)session.getAttribute("userBean");
 		
-		session.setAttribute("currentOrdersOfCustomer", currentOrdersOfCustomer);
+		int id = aUser.getID();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewOrders.jsp");
-		dispatcher.forward(request, response);
+		Products aProduct = new Products(productName,category,price,quantity,id,description,productimage);  
+				
+		aProduct.addProducts(aProduct);
+		Products aProduct2 = new Products();
 		
-		
-	}
+			ArrayList<Products> productResult = new ArrayList<Products>();
+			productResult = aProduct2.returnProductsBySellerID(id);
+				request.setAttribute("productResult", productResult);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ManageProducts.jsp");
+				dispatcher.forward(request, response);
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

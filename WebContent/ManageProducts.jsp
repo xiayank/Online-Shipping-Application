@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %> 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Manage Products</title>
+  <title>Manage Product</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,110 +14,105 @@
      .container {
       padding: 80px 10px;
   }
-  
   </style>    
 
     
 </head>
 <body>
-<%
-String name = request.getParameter("name");
-String category = request.getParameter("category");
-String price = request.getParameter("price");
-String stocknumber = request.getParameter("stocknumber");
-
-String addname = request.getParameter("addname");
-String addcategory = request.getParameter("addcategory");
-String addprice = request.getParameter("addprice");
-String addstocknumber = request.getParameter("addstocknumber");
-
-if(name == "" || category == "" || price == "" || stocknumber == "" || name == null || category == null || price == null || stocknumber == null){
-	name = "ADIDAS RUNNING SHOE";
-	category = "Men Shoe";
-	price = "100";
-	stocknumber = "123";
-}
-%>
 <!-- navbar-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Manage Products</a>
+      <a class="navbar-brand" href="Home.jsp">Manage Product</a>
     </div>
-    
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">New Arrive</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MEN<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">WOMEN<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">KIDS<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>    
+    </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="ViewCurrentOrders.jsp"><span class="glyphicon glyphicon-user"></span> View Current Orders</a></li>
-      <li><a href="SellerHomePage.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Seller Homepage</a></li>
-      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+   	 <li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
+      <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
+      <li><a href="AddNewProduct.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Add New Product</a></li>
+      <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
 </nav>
 <!--results -->
 <div class="container ">
-    
-  <h2>Here are your products for selling:</h2>
-<td><a href="AddNewProduct.jsp">
-<button type="button" class="btn btn-success"  style="float: right;">Add New Product</button></a></td>
+
+    <div class="text-center">
+
+  
+  
+	
+
+
   <br>
-    
+    </div>
     <table class="table">
     <thead>
       <tr>
         <th></th>
-        <th> Name</th>
-        <th> Category</th>
+        <th>Name</th>
+        <th>available quantity</th>
         <th>Price</th>
-		<th>Number of Purchases</th>
-		<th>Number of items in stock</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
+    
+    
+    <c:forEach var="productResultBean" items="${productResult}">
       <tr>
         <td><div class="col-sm-12">
+        
       <a href="#demo3" data-toggle="collapse">
-        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="255" height="255">
+       <img src= ${productResultBean.productThumbnail} class=" person" alt="Random Name" width="255" height="255">
       </a>
-      </div>
-        </td>
-        <td><%= name %></td>
-        <td><%= category %></td>
-        <td><%= price %></td>
-		<td>10</td>
-		<td><%= stocknumber %></td>
-		
-        <td><a href="EditProductDetails.jsp"><button type="button" class="btn btn-success">Edit</button></a></td>
-      </tr>
-      <%
-      if(addname != null && addname != null){
-    	  
-      }
-      %>
-
-	<%
-	if(addname != null && addname != ""){
-	%>
-		<tr>
-        <td><div class="col-sm-12">
-      <a href="#demo3" data-toggle="collapse">
-        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="255" height="255">
-      </a>
-      </div>
-        </td>
-        <td><%= addname %></td>
-        <td><%= addcategory %></td>
-        <td><%= addprice %></td>
-		<td>10</td>
-		<td><%= addstocknumber %></td>
-		
-        <td><a href="EditProductDetails.jsp"><button type="button" class="btn btn-success">Edit</button></a></td>
-      </tr>
-	<%
-		} 
-		
-	%>
-    
      
+      
+      </div>
+        </td>
+        <td>${productResultBean.productName}</td>
+        <td>${productResultBean.availableQuantity}</td>
+        <td>${productResultBean.price} $</td>
+   
+        
+         <!-- use a hidden input tag to store the ID and submit it to servlet when corresponding button been clicked -->
+        <form action = "EditProductDetail" method = "post"  />
+        <input type="hidden" name="ID" value="<c:out value="${productResultBean.ID}" />">
+        <td> <button type="submit" class="btn btn-success">Edit Product</button>   </td>
+        </form>
+        
+      </tr>
+    
+    </c:forEach>
     </tbody>
   </table>
 </div>

@@ -37,25 +37,39 @@ public class Register extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("psw");
+		String type2 = request.getParameter("type");
 		
-		//Users aUser = new Users(userName, password, 1);
-		Users aUser = new Users();
-		aUser.setUserName(userName);
-		aUser.setPassword(password);
-		aUser.setType(1);//true = costumer
-		boolean userExists = false;
-		//ServletContext sc = this.getServletContext();
-		//String propFilePath = sc.getRealPath("/WEB-INF/users.properties");
-		if((userName!=null) && (!userName.trim().equals(""))&&(password!=null) && (!password.trim().equals(""))) {
+		if (type2.equals("1")){
+		Users aUser = new Users(userName, password, 1);//true = costumer
+			boolean userExists = false;
+			if((userName!=null) && (!userName.trim().equals(""))&&(password!=null) && (!password.trim().equals(""))) {
 			
 			userExists = aUser.validateUserByUsername(userName);
-			if(!userExists){
+			if(!userExists){   
 				aUser.addCustomerUser(aUser);
 				response.sendRedirect("Login.jsp");
 			}else{
 				//show a page to notice user that such username is no exist
 				response.sendRedirect("Register.jsp");
 			}
+		}
+		}
+		if(type2.equals("2")){
+			Users aUser2 = new Users(userName, password, 2);
+		
+			boolean user2Exists = false;
+			if((userName!=null) && (!userName.trim().equals(""))&&(password!=null) && (!password.trim().equals(""))) {
+			
+			user2Exists = aUser2.validateUserByUsername(userName);
+			if(!user2Exists){   
+				aUser2.addSellerUser(aUser2);
+				response.sendRedirect("Login.jsp");
+			}else{
+				//show a page to notice user that such username is no exist
+				response.sendRedirect("Register.jsp");
+			}
+			}
+		}
 		}
 		//response.sendRedirect("Register.jsp");
 		
@@ -69,7 +83,7 @@ public class Register extends HttpServlet {
 		// Register the Users object
 		//aUser.registerUser(aUser, propFilePath);
 		 
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

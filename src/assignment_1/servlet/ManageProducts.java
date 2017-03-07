@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import assignment_1.model.Orders;
+import assignment_1.model.Products;
 import assignment_1.model.Users;
 
 /**
- * Servlet implementation class ViewOrders
+ * Servlet implementation class ManageProducts
  */
-@WebServlet("/ViewOrders")
-public class ViewOrders extends HttpServlet {
+@WebServlet("/ManageProducts")
+public class ManageProducts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewOrders() {
+    public ManageProducts() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +34,22 @@ public class ViewOrders extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Users aUser = (Users) session.getAttribute("userBean");
-		int userId = aUser.getID();
-		Orders anOrders = new Orders();
-		ArrayList<Orders> currentOrdersOfCustomer = anOrders.returnOrderByUserId(userId);
+		Products aProduct = new Products();
+		Users aUser = (Users)session.getAttribute("userBean");
+		int id = aUser.getID();
 		
-		session.setAttribute("currentOrdersOfCustomer", currentOrdersOfCustomer);
+		 
+		ArrayList<Products> searchResult = new ArrayList<Products>();
+		searchResult = aProduct.returnProductsBySellerID(id);
+
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewOrders.jsp");
+		request.setAttribute("productResult", searchResult);
+	
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ManageProducts.jsp");
 		dispatcher.forward(request, response);
 		
-		
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

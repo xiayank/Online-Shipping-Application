@@ -40,8 +40,6 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	    
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("psw");
 		
@@ -51,20 +49,26 @@ public class Login extends HttpServlet {
 		if((userName!=null) && (!userName.trim().equals(""))&&(password!=null) && (!password.trim().equals(""))){
 			userExists = aUser.validateUser(userName, password);
 			if(userExists){
-				
+				 
 				aUser = aUser.returnUserByUsername(userName);
-				
 				HttpSession session = request.getSession();
 			    session.setAttribute("userBean", aUser);
-			    
-			    String address = "Home.jsp";
-			    RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-			    dispatcher.forward(request, response);
+			    int type = aUser.getType();
+			    	if (type == 1){
+			    		String address = "Home.jsp";
+			    		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+			    		dispatcher.forward(request, response);
+			    	}
+			    	if (type == 2){
+			    		String address = "SellerHomePage.jsp";
+			    		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+			    		dispatcher.forward(request, response);
+			    	}
 			}else{
 				response.sendRedirect("Login.jsp");
 			}
 		}else{
-			response.sendRedirect("Login.jsp");
+			response.sendRedirect("Register.jsp");
 		}
 		
 //		ServletContext sc = this.getServletContext();

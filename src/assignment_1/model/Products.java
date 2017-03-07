@@ -21,6 +21,17 @@ public class Products {
 	String question;
 	String answer;
 	
+	public Products(String productName, String category,int price, int quantity, int sellerID,String Description,String productimage) {
+		super();
+		this.productName = productName;
+		this.price = price;
+		this.availableQuantity = quantity;
+		this.productDescription = Description;
+		this.sellerId = sellerID;
+		this.productCategory = category;
+		this.productThumbnail = productimage;
+	}
+	
 	
 	public String getSellerName() {
 		return sellerName;
@@ -228,6 +239,21 @@ public class Products {
 		return selectedProducts;
 		
 	}
+	public ArrayList<Products> returnProductsBySellerID(int sellerId){
+		ProductsDB DB =new ProductsDB();
+		DB.connectMeIn();
+		ArrayList<Products> allProducts = new ArrayList<Products>();
+		ArrayList<Products> selectedProducts = new ArrayList<Products>();
+		allProducts = DB.returnAllProductsDB();
+	//System.out.println(allProducts.size());
+			for(Products aProduct : allProducts){
+			if(aProduct.sellerId == sellerId){
+					selectedProducts.add(aProduct);
+				}
+			}
+	
+		return selectedProducts;
+		}
 	
 	public Products returnProductsByID(int id){
 		ProductsDB DB =new ProductsDB();
@@ -249,6 +275,23 @@ public class Products {
 		return null;
 	}
 	
+	public void editProducts(Products aProduct,String productName, int price, int quantity, String description){
+		aProduct.setProductName(productName); 
+		aProduct.setPrice(price); 
+		aProduct.setProductDescription(description);
+		aProduct.setAvailableQuantity(quantity);
+		
+		ProductsDB uDB = new ProductsDB();
+		uDB.connectMeIn();
+		uDB.editProductsDAO(aProduct);
+		uDB.closeConnection();
+	}
+	public void addProducts(Products aProduct){
 	
+		ProductsDB uDB = new ProductsDB();
+		uDB.connectMeIn();
+		uDB.addProductsDAO(aProduct);
+		uDB.closeConnection();
+	}
 	
 }

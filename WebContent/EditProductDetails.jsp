@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>EditProductDetails</title>
+  <title>Detail</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -11,113 +12,175 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
 
-  </style>    
-    
-												    
+     .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      min-height: 200px;
+    }
+      footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+     @media (max-width: 600px) {
+      .carousel-caption {
+        display: none; 
+      }
+.star-icon {
+    color: #ddd;
+    font-size: 2em;
+    position: relative;
+}
+.star-icon.full:before {
+    text-shadow: 0 0 2px rgba(0,0,0,0.7);
+    color: #FDE16D;
+    content: '\2605'; /* Full star in UTF-8 */
+    position: absolute;
+    left: 0;
+}
+.star-icon.half:before {
+    text-shadow: 0 0 2px rgba(0,0,0,0.7);
+    color: #FDE16D;
+    content: '\2605'; /* Full star in UTF-8 */
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+}
+@-moz-document url-prefix() { /* Firefox Hack :( */
+  .star-icon {
+    font-size: 50px;
+    line-height: 34px;
+  }
+}
+  </style>   
+
+   
 </head>
 <body>
-
 <!-- navbar-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Edit Product Detail</a>
+      <a class="navbar-brand" href="Home.jsp">SHOPPING YOU WANT!</a>
     </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">New Arrive</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MEN<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">WOMEN<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">KIDS<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>    
+    </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="SellerHomePage.jsp"><span class="glyphicon glyphicon-user"></span> Home Page</a></li>
-      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+    <li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
+       <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
+      <li><a href="ShoppingCart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+      <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
+
 </nav>
+
+<!--detail-->
+<!-- Wrapper for slides -->
+<!--buttons-->
 <div class="container">
+
+<a href="Home.jsp" type="button" class="btn btn-link">Home</a><br>
+
+    
+
+<a href="SearchResult.jsp" type="button" class="btn btn-link">Back to Search</a><br><br>
+
 <div class="row">
-	 <br>
-            <div class="col-md-12">
-                <div class="col-md-5 col-sm-7 col-xs-13 col-md-push-7 col-sm-push-7">
-                    <!--REVIEW ORDER-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
-                            <h4>Product Details</h4>
-                        </div>
-                        <form action="ManageProducts.jsp" method = "get">
-                        <div class="panel-body">
-						 <div class="col-md-12">
-                                    <strong>Product name</strong>
-                                    <div class="pull-right"><span><input name = "name" type="text" placeholder="name"></span></div>
-                                    <hr>
-                                </div>
-                               <div class="col-md-12">
-                                    <strong>Product category</strong>
-                                    <div class="pull-right"><span><input name = "category" type="text" placeholder="category"></span></div>
-                                    <hr>
-                                </div>
-                                <div class="col-md-12">
-                                    <strong>Product price</strong>
-                                    <div class="pull-right"><span><input name = "price" type="text" placeholder="price"></span></div>
-                                    <hr>
-                                </div>
-								<div class="col-md-12">
-                                    <strong>Estimate shipping time</strong>
-                                    <div class="pull-right"><span><input name = "time" type="text" placeholder="shipping time"></span></div>
-                                    <hr>
-                                </div>
-								<div class="col-md-12">
-                                    <strong>Number of items in stock</strong>
-                                    <div class="pull-right"><span><input name = "stocknumber"  type="text" placeholder="numbers"></span></div>
-                                    <hr>
-                                </div>
-								<div class="col-md-12">
-                                    <strong>Product description</strong>
-                                    <div class="pull-right"><span><input name = "description" type="text" placeholder="description"></span></div>
-                                    <hr>
-                                </div>
-								<div class="col-md-12">
-                                    <strong>Costumers Q&A</strong>
-                                    <div class="pull-right"><textarea name = "QA"  cols = 30 rows = 5 type="text" placeholder="Q&A"></textarea></div>
-                                    
-                                </div>
-                                <input type="submit" value = "Save" class="btn btn-primary btn-lg btn-block"><br/>
-								 <a href="ManageProducts.jsp"><button type="button" class="btn btn-primary btn-lg btn-block">Cancel</button></a>
-                                
-                        </div>
-                        </form>
-                    </div>
-                    <!--REVIEW ORDER END-->
-                </div>
-                <div class="col-md-7 col-sm-5 col-xs-11 col-md-pull-5 col-sm-pull-5">
-                    <!--SHIPPING METHOD-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center"><h4>Product Image</h4></div>
-                        <div class="panel-body">
-                           <table class="table borderless">
-    						<thead>
-                               
-    						</thead>
-    						<tbody>
-    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-    							<tr>
-    								<td class="col-md-3">
-    								    <div class="media">
-    								         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="Pics/adidas.jpg" style="width: 630px; height: 540px;"> </a>
-    								         <div class="media-body">
-    								            
-    								         </div>
-    								    </div>
-    								</td>
-    								
-    							</tr>
-                               
-    						</tbody>
-    					</table> 
-                        </div>
-                    </div>
-                    <!--SHIPPING METHOD END-->
-                </div>
-                </div>
-                </div>
+  <div class="col-sm-8">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src=${selectedProduct.productThumbnail}  alt="Image">
+          <div class="carousel-caption">
+            <h3>${selectedProduct.productName }</h3>
+
+          </div>      
+        </div>
+
+        <div class="item">
+          <img src=${selectedProduct.productThumbnail} alt="Image">
+          <div class="carousel-caption">
+            <h3>${selectedProduct.productName }</h3>
+
+          </div>      
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <div class="col-sm-4">
+  <form action = "EditProductDetail" method = "post"  />
+    <h2>${selectedProduct.productName}</h2><input name = "name" type="text"><br>
+    <h4>Price<code> ${selectedProduct.price }$</code><input name = "price" type="number" class=" text-center"></h4>
+    <h4>Availiable quantity <code>${selectedProduct.availableQuantity }</code><input name = "quantity" type="number" class=" text-center"></h4>
+   
+							
+    <div class="well well-sm"><h4>Description </h4>${selectedProduct.productDescription }
+      <br><input name = "Description" type="text"><br>
+    </div>
+      
+      
+        <input type="hidden" name="ID" value="<c:out value="${selectedProduct.ID}" />">
+       <button  class="btn btn-primary" type="submit" class="btn btn-success"> Save</button>
+        </form>
+      
+
+ </div>
 </div>
-           
-             
+<hr>
+</div>
+
+
+  <hr>
+    
+    
  
-</body>
+<hr>
+
+    </body>
+
 </html>

@@ -73,7 +73,7 @@ public class TransactionConfirmation extends HttpServlet {
 				Orders anOrder = new Orders();
 				Users activeUser = (Users) session.getAttribute("userBean");
 				
-				anOrder.setCustomerId(activeUser.getUserId());
+				anOrder.setCustomerId(activeUser.getID());
 				anOrder.setCreditCardNumber(creditCardNumber);
 				anOrder.setOrderNumber(orderNumber);
 				anOrder.setShippingAddress(fullAddress);
@@ -81,7 +81,7 @@ public class TransactionConfirmation extends HttpServlet {
 				
 				//add current order into database
 				anOrder.addOrder(anOrder);
-				System.out.println(activeUser.getUserId());
+				System.out.println(activeUser.getID());
 				//after add into database, then get the primary key Id from database
 				Orders currentOrder = new Orders();
 				currentOrder = currentOrder.returnOrderByOrderNumber(anOrder.getOrderNumber());
