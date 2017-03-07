@@ -1,3 +1,3 @@
-# Team8-assignment_1
+# Team8-assignment
 
 Online Shopping Website
