@@ -68,6 +68,22 @@ public class OrderItemsDB {
 		    return orderItemsList;
 		}
 	
+	public void chanegItemStatusDAO(int itemsId)  {
+		String SQL = "UPDATE OrderItems SET Status = 1 WHERE Id = ? ";
+	    try {
+			ps = conn.prepareStatement(SQL);
+			ps.setInt(1, itemsId);
+		  
+		    ps.executeUpdate();
+		    
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public void addOrderItemsDAO(OrderItems anOrderItems)  {
 			
 			try {

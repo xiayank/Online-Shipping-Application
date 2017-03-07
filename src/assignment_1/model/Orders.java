@@ -140,6 +140,26 @@ public class Orders {
 		return null;
 	}
 	
+	public Orders returnOrderByOrderId(int OrderId){
+		OrdersDB DB =new OrdersDB();
+		DB.connectMeIn();
+		ArrayList<Orders> allOrders = new ArrayList<Orders>();
+		//Products selectedProduct = new Products();
+		allOrders = DB.returnAllOrdersDAO();
+
+		for(Orders anOrder : allOrders){
+			
+
+			if(anOrder.id == OrderId){
+				DB.closeConnection();
+				return anOrder;
+				
+			}
+		}
+		DB.closeConnection();
+		return null;
+	}
+	
 	public ArrayList<Orders> returnOrderByUserId(int userId){
 		OrdersDB DB =new OrdersDB();
 		DB.connectMeIn();
