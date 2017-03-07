@@ -95,7 +95,7 @@
     <ul class="nav navbar-nav navbar-right">
     <li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
        <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
-      <li><a href="ShoppingCart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+      <li><a href="ManageProducts"><span class="glyphicon glyphicon-shopping-cart"></span>Manage Product</a></li>
       <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
@@ -153,20 +153,21 @@
     </div>
   </div>
   <div class="col-sm-4">
-  <form action = "EditProductDetail" method = "post"  />
+  <form action = "EditProductDetail" method = "post">
+  
     <h2>${selectedProduct.productName}</h2><input name = "name" type="text"><br>
     <h4>Price<code> ${selectedProduct.price }$</code><input name = "price" type="number" class=" text-center"></h4>
-    <h4>Availiable quantity <code>${selectedProduct.availableQuantity }</code><input name = "quantity" type="number" class=" text-center"></h4>
+    <h4>Available quantity <code>${selectedProduct.availableQuantity }</code><input name = "quantity" type="number" class=" text-center"></h4>
    
 							
     <div class="well well-sm"><h4>Description </h4>${selectedProduct.productDescription }
       <br><input name = "Description" type="text"><br>
     </div>
-      
-      
-        <input type="hidden" name="ID" value="<c:out value="${selectedProduct.ID}" />">
+     
+        <input type="hidden" name="ID" value="${selectedProduct.ID}" >
        <button  class="btn btn-primary" type="submit" class="btn btn-success"> Save</button>
-        </form>
+       
+ </form>
       
 
  </div>

@@ -85,17 +85,22 @@ public ArrayList<Products>returnAllProductsDB(){
 	    return productsList;
 	}
 public void editProductsDAO(Products aProduct)  {
-	
-	String SQL = "UPDATE Products SET ProductName = ?, Price = ?, AvailableQuantity = ?, ProductDescription = ?, WHERE SellerId = ? ";
-    try {
-    	String Username = aProduct.getProductName();
-		  int price = aProduct.getPrice();
-		  int quantity = aProduct.getAvailableQuantity();
-		  String description = aProduct.getProductDescription();
+	String Username = aProduct.getProductName();
+	  int price = aProduct.getPrice();
+	  int quantity = aProduct.getAvailableQuantity();
+	  String description = aProduct.getProductDescription();
+	  int id = aProduct.getID();
+	  try {
+		  PreparedStatement ps = conn.prepareStatement(
+				  "UPDATE Products SET ProductName = ?, Price = ?, AvailableQuantity = ?, ProductDescription = ? WHERE Id = ? ");
+	 
 		  ps.setString(2,Username);
 		  ps.setInt(5,price);
 		  ps.setInt(6,quantity);
 		  ps.setString(4,description);
+		  ps.setInt(1,id);
+		  ps.executeUpdate();
+		    ps.close();
 	    
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

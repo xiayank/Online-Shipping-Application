@@ -40,7 +40,7 @@ public class EditProductDetail extends HttpServlet {
 		//System.out.println(aProduct.getProductDescription());
 		dispatcher.forward(request, response);
 		}
-		if(refer.contains("EditProductDetails")) {
+		else {
 		String name = request.getParameter("name");
 		int price = Integer.parseInt(request.getParameter("price"));
 		int quantity =Integer.parseInt(request.getParameter("quantity"));
@@ -51,9 +51,6 @@ public class EditProductDetail extends HttpServlet {
 		
 			aProduct.editProducts(aProduct, name, price,quantity,description);
 	
-			// TODO Auto-generated catch block
-			
-		
 		request.setAttribute("selectedProduct", aProduct);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("EditProductDetails.jsp");
 		dispatcher.forward(request, response);
