@@ -55,7 +55,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
     	<li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
-      <li><a href="ViewOrders.jsp"> View My Order</a></li>
+      <li><a href="ViewOrders"> View My Order</a></li>
       <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>

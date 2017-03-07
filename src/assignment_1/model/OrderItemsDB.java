@@ -44,12 +44,12 @@ public class OrderItemsDB {
 					OrderItems anOrderItem = new OrderItems();//new a product object every iteration 
 					anOrderItem.setId(rs.getInt(1));
 					anOrderItem.setOrderId(rs.getInt(2));
-					anOrderItem.setProductId(rs.getInt(3));
-					anOrderItem.setRequestQuantity(rs.getInt(5));
-					anOrderItem.setShippingStatus(rs.getInt(6));
-					anOrderItem.setStatus(rs.getInt(8));
+					anOrderItem.setProductId(rs.getInt(4));
+					anOrderItem.setRequestQuantity(rs.getInt(6));
+					anOrderItem.setShippingStatus(rs.getInt(7));
+					anOrderItem.setStatus(rs.getInt(9));
 					
-					
+					//System.out.println(anOrderItem.getProductId());
 					orderItemsList.add(anOrderItem);
 					
 				}

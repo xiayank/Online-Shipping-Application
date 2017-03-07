@@ -38,7 +38,11 @@ public class Register extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("psw");
 		
-		Users aUser = new Users(userName, password, 1);//true = costumer
+		//Users aUser = new Users(userName, password, 1);
+		Users aUser = new Users();
+		aUser.setUserName(userName);
+		aUser.setPassword(password);
+		aUser.setType(1);//true = costumer
 		boolean userExists = false;
 		//ServletContext sc = this.getServletContext();
 		//String propFilePath = sc.getRealPath("/WEB-INF/users.properties");

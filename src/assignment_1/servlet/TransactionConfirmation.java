@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import assignment_1.model.OrderItems;
+import assignment_1.model.Orders;
 import assignment_1.model.ShoppingCartBean;
 import assignment_1.model.Transactions;
+import assignment_1.model.Users;
 
 /**
  * Servlet implementation class TransactionConfirmation
@@ -55,14 +58,58 @@ public class TransactionConfirmation extends HttpServlet {
 		int validCard = 0; 
 		Transactions aTransaction = new Transactions();
 		boolean exsitCard =  aTransaction.validateCreditCard(cardHolderName, creditCardNumber, cardType, cVV);
+		
 		if(exsitCard){
 			//charge card balance
 			validCard = 0;// successfully charged
 			int nowBalance = aTransaction.returnBalanceByCardNumber(creditCardNumber);
 			int remainedBalance = nowBalance - totalCost;
+			
+			
 			if(remainedBalance >= 0){
 				aTransaction.updateBalance(creditCardNumber, remainedBalance);
-				System.out.println(remainedBalance);
+				//System.out.println(remainedBalance);
+				int orderNumber = 1000000 + (int)(Math.random() * 1111111);
+				Orders anOrder = new Orders();
+				Users activeUser = (Users) session.getAttribute("userBean");
+				
+				anOrder.setCustomerId(activeUser.getUserId());
+				anOrder.setCreditCardNumber(creditCardNumber);
+				anOrder.setOrderNumber(orderNumber);
+				anOrder.setShippingAddress(fullAddress);
+				anOrder.setTotalCost(totalCost);
+				
+				//add current order into database
+				anOrder.addOrder(anOrder);
+				System.out.println(activeUser.getUserId());
+				//after add into database, then get the primary key Id from database
+				Orders currentOrder = new Orders();
+				currentOrder = currentOrder.returnOrderByOrderNumber(anOrder.getOrderNumber());
+				
+				ArrayList<OrderItems> itemsOfAnOrder = new ArrayList<>();
+				
+				for(ShoppingCartBean aShoppingCartBean: shoppingCartList){
+					OrderItems anOrderItems = new OrderItems();
+					
+					anOrderItems.setOrderId(currentOrder.getId()); // the FOREIGN KEY of OrderItems is OrderId
+					anOrderItems.setProductId(aShoppingCartBean.getaProduct().getID());
+					anOrderItems.setRequestQuantity(aShoppingCartBean.getRequestQuantity());
+//					anOrderItems.setShippingRefNo(1);
+//					anOrderItems.setShippingStatus(1);
+//					anOrderItems.setStatus(1);
+					
+					itemsOfAnOrder.add(anOrderItems);
+					System.out.println(aShoppingCartBean.getaProduct().getID()+" " + currentOrder.getId() + " "+aShoppingCartBean.getRequestQuantity());
+				}
+				
+				anOrder.setItemsOfAnOrder(itemsOfAnOrder);
+				
+				//add all Order Items of current order into database
+				for(OrderItems anOrderItem: itemsOfAnOrder){
+					anOrderItem.addOrderItems(anOrderItem);
+				}
+				
+				
 			}else{
 				
 				validCard = 1; //no sufficient fund, show error!
@@ -73,6 +120,23 @@ public class TransactionConfirmation extends HttpServlet {
 			
 			validCard = 2; //invalid card, show error !
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		session.setAttribute("firstName", firstName);
 		session.setAttribute("lastName", lastName);

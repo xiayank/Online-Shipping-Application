@@ -105,9 +105,11 @@ public class UsersDB {
 			while (rs.next()){
 				if(aUserName.equals( rs.getString(14) )) {
 					
+					aUser.setUserId(rs.getInt(1));
 					aUser.setUserName(rs.getString(14));
 					aUser.setPassword(rs.getString(15));
 					aUser.setType(Integer.parseInt(rs.getString(11)));
+					
 					
 				} 
 		    }

@@ -396,7 +396,7 @@ hr{
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="Home.jsp"><span class="glyphicon glyphicon-user"></span> Home </a></li>
-        <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
+        <li><a href="ViewOrders"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
       <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
@@ -451,7 +451,7 @@ hr{
                         
 						<tr>
 							
-							
+							<td colspan="1" class="hidden-xs"><a href = "ViewOrders"><button class="btn btn-primary btn-submit-fix">View My Orders</button></a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td colspan="3" class="hidden-xs text-center"><h2>Total Cost: ${totalCost}$</h2> </td>
 							
@@ -512,9 +512,8 @@ hr{
                                 <div class="col-md-12"><strong>Phone Number:</strong></div>
                                 <div class="col-md-12"><p>${phoneNumber}</p></div>
                             
-                           
-                                
-                           
+                           		
+                                                           
                         </div>
                         </div>
     <!--payment-->

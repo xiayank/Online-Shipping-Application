@@ -103,6 +103,7 @@ public class UpdateShoppingCart extends HttpServlet {
 		for(ShoppingCartBean aShoppingCartItem :shoppingCartList ){
 			sum  +=  aShoppingCartItem.getRequestQuantity() * aShoppingCartItem.getaProduct().getPrice();
 		}
+		//System.out.println(sum);
 		session.setAttribute("totalCost", sum);
 		
 		session.setAttribute("shoppingCartList", shoppingCartList);

@@ -103,11 +103,11 @@
     				<thead>
 						<tr>
 							<th style="width:36%">Product</th>
-                            <th style="width:8%">Seller</th>
-							<th style="width:8%">Price</th>
+                            <th style="width:11%">Seller</th>
+							<th style="width:11%">Price</th>
 							<th style="width:8%">Quantity</th>
                             <th style="width:8%">Estimated delivery date</th>
-							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%" class="text-center"></th>
 							<th style="width:10%"></th>
 						</tr>
 					</thead>
@@ -125,15 +125,14 @@
 							</td>
                             <td data-th="Seller">${aShoppingCarProduct.aProduct.sellerName}</td>
 							<td data-th="Price">${aShoppingCarProduct.aProduct.price}$</td>
-							<td data-th="Quantity">
-							 <input type="number" class="form-control text-center" value="${aShoppingCarProduct.requestQuantity}"> 
-							</td>
+							<td data-th="Quantity">${aShoppingCarProduct.requestQuantity}</td>
                             <td data-th="Subtotal" class="text-center">1/1/2017</td>
-							<td data-th="Price" class="text-center">199</td>
-							<td class="actions" data-th="">
-								
-								<button class="btn btn-danger btn-sm">Delete<i class="fa fa-trash-o"></i></button>								
-							</td>
+							
+							
+							<form action = "UpdateShoppingCart" method = "post"  />
+						        <input type="hidden" name="deleteID" value="<c:out value="${aShoppingCarProduct.aProduct.ID}" />">
+						        <td> <button type="submit" class="btn btn-danger">Delete</button>   </td>
+						     </form>
 						</tr>
 						</c:forEach>
 						
@@ -143,8 +142,8 @@
 						
 						<tr>
 							<td><a href="SearchResult.jsp" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-							<td colspan="4" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong>Total $199</strong></td>
+							<td colspan="2" class="hidden-xs"></td>
+							<td colspan="3" class="hidden-xs text-center"><h1>Total Cost: <i>${totalCost}$</i></h1></td>
 							
                             <td>
                             

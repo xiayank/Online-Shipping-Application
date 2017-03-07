@@ -16,7 +16,22 @@ public class OrderItems {
 	int shippingStatus;
 	int shippingRefNo;
 	int status;
+	int subTotal;
+	Products products;
 	
+	
+	public Products getProducts() {
+		return products;
+	}
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+	public int getSubTotal() {
+		return subTotal;
+	}
+	public void setSubTotal(int subTotal) {
+		this.subTotal = subTotal;
+	}
 	public int getId() {
 		return id;
 	}
@@ -77,4 +92,43 @@ public class OrderItems {
 		db.closeConnection();
 	}
 	
+	public OrderItems returnOrderItemsById(int id){
+		OrderItemsDB db = new OrderItemsDB();
+		db.connectMeIn();
+		ArrayList<OrderItems> allOrderItems = new ArrayList<OrderItems>();
+		
+		allOrderItems = db.returnAllOrderItemsDAO();
+		for(OrderItems anOrderItems:allOrderItems){
+			if(anOrderItems.id == id){
+				db.closeConnection();
+				return anOrderItems;
+				
+			}
+		}
+		
+		
+		db.closeConnection();
+		return null;
+		
+	}
+	
+	public ArrayList<OrderItems>returnOrderItemsByOrderId(int orderId){
+		OrderItemsDB db = new OrderItemsDB();
+		db.connectMeIn();
+		ArrayList<OrderItems> allOrderItems = new ArrayList<OrderItems>();
+		ArrayList<OrderItems> currentOrderItems = new ArrayList<OrderItems>();
+		allOrderItems = db.returnAllOrderItemsDAO();
+		for(OrderItems anOrderItems:allOrderItems){
+			if(anOrderItems.orderId == orderId){
+				currentOrderItems.add(anOrderItems);
+				
+				
+			}
+		}
+		
+		
+		db.closeConnection();
+		return currentOrderItems;
+		
+	}
 }

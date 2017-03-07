@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,50 +76,33 @@
         <th>Order number</th>
         <th>Order Total</th>
         <th>Ordered date</th>
-        <th></th>
+        <th>Shipping address</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
+    
+    
+    <c:forEach var="anOrder" items="${currentOrdersOfCustomer}">
       <tr>
         <td><div class="col-sm-12">
-      <a href="#demo3" data-toggle="collapse">
-        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="255" height="255">
-      </a>
+     
       </div>
         </td>
-        <td>2461419203</td>
-        <td>$199</td>
+        <td>${anOrder.orderNumber }</td>
+        <td>${anOrder.totalCost }$</td>
         <td>1/1/2017</td>
-        <td></td>
-        <td><a href="ManageOrders.jsp" type="button" class="btn btn-success">View </a></td>
+        <td>${anOrder.shippingAddress }</td>
+
+        <form action = "ManageOrder" method = "post"  />
+        <input type="hidden" name="orderId" value="<c:out value="${anOrder.id}" />">
+        <input type="hidden" name="orderNumber" value="<c:out value="${anOrder.orderNumber}" />">
+        <td> <button type="submit" class="btn btn-success">View</button>   </td>
+        </form>
+        
       </tr>
-    <tr>
-        <td><div class="col-sm-12">
-      <a href="#demo3" data-toggle="collapse">
-        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="255" height="255">
-      </a>
-      </div>
-        </td>
-        <td>2461419203</td>
-        <td>$199</td>
-        <td>1/1/2017</td>
-        <td></td>
-        <td><a href="ManageOrders.jsp" type="button" class="btn btn-success">View </a></td>
-      </tr>
-    <tr>
-        <td><div class="col-sm-12">
-      <a href="#demo3" data-toggle="collapse">
-        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="255" height="255">
-      </a>
-      </div>
-        </td>
-        <td>2461419203</td>
-        <td>$199</td>
-        <td>1/1/2017</td>
-        <td></td>
-        <td><a href="ManageOrders.jsp" type="button" class="btn btn-success">View </a></td>
-      </tr>
+    </c:forEach>
+    
      
     </tbody>
   </table>

@@ -140,6 +140,25 @@ public class Orders {
 		return null;
 	}
 	
+	public ArrayList<Orders> returnOrderByUserId(int userId){
+		OrdersDB DB =new OrdersDB();
+		DB.connectMeIn();
+		ArrayList<Orders> allOrders = new ArrayList<Orders>();
+		ArrayList<Orders> currentOrders = new ArrayList<>();
+		//Products selectedProduct = new Products();
+		allOrders = DB.returnAllOrdersDAO();
+
+		for(Orders anOrder : allOrders){
+			
+
+			if(anOrder.customerId == userId){
+				currentOrders.add(anOrder);
+				
+			}
+		}
+		DB.closeConnection();
+		return currentOrders;
+	}
 	
 	
 }

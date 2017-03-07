@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,75 +107,41 @@
 							<th style="width:8%">Quantity</th>
                             <th style="width:8%">Estimated delivery date</th>
 							<th style="width:22%" class="text-center">Subtotal</th>
-							<th style="width:10%">Check item to cancel</th>
+							<th style="width:10%"></th>
 						</tr>
 					</thead>
+					
+					
 					<tbody>
 						<tr>
 							<td data-th="Product">
 								<div class="row">
-									<div class="col-sm-4 hidden-xs"><img src="Pics/adidas.jpg" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-4 hidden-xs"><img src=${anOrderItem.products.productThumbnail } alt="..." class="img-responsive"/></div>
 									<div class="col-sm-4">
-										<h4 class="nomargin">Adidas Running shoe</h4>
+										<h4 class="nomargin">${anOrderItem.products.productName }</h4>
 										<p></p>
 									</div>
 								</div>
 							</td>
-                            <td data-th="Seller">Adidas</td>
-							<td data-th="Price">$199</td>
-							<td data-th="Quantity">
-								<input type="number" class="form-control text-center" value="1">
-							</td>
-                            <td data-th="Subtotal" class="text-center">1/1/2017</td>
-							<td data-th="Subtotal" class="text-center">%199</td>
-							<td class="actions" data-th="">
-								
-<!--								<button class="btn btn-danger btn-sm">Delete<i class="fa fa-trash-o"></i></button>								-->
-                                <form>
-                            <div class="checkbox">
-                            <label><input type="checkbox" value=""></label>
-                                 </div>
-                                </form>
-							</td>
+                            <td data-th="Seller">${anOrderItem.products.sellerName }</td>
+							<td data-th="Price">${anOrderItem.products.price }$</td>
+							<td data-th="Quantity">${anOrderItem.requestQuantity }</td>
+                            <td data-th="date" class="text-center">1/1/2017</td>
+							<td data-th="Subtotal" class="text-center">${anOrderItem.subTotal}</td>
+							
 						</tr>
 					</tbody>
-        <tbody>
-						<tr>
-							<td data-th="Product">
-								<div class="row">
-									<div class="col-sm-4 hidden-xs"><img src="Pics/adidas.jpg" alt="..." class="img-responsive"/></div>
-									<div class="col-sm-4">
-										<h4 class="nomargin">Adidas Running shoe</h4>
-										<p></p>
-									</div>
-								</div>
-							</td>
-                            <td data-th="Seller">Adidas</td>
-							<td data-th="Price">$199</td>
-							<td data-th="Quantity">
-								<input type="number" class="form-control text-center" value="1">
-							</td>
-                            <td data-th="Subtotal" class="text-center">1/1/2017</td>
-							<td data-th="Subtotal" class="text-center">$199</td>
-							<td class="actions" data-th="">
-								
-<!--								<button class="btn btn-danger btn-sm">Delete<i class="fa fa-trash-o"></i></button>								-->
-                             <form>
-                            <div class="checkbox">
-                            <label><input type="checkbox" value=""></label>
-                                 </div>
-                                </form>
-							</td>
-						</tr>
-					</tbody>
+        			
+        			
+        			
 					<tfoot>
                         
 						<tr>
 							
 							<td colspan="5" class="hidden-xs"></td>
 							
-							<td><a href="CancellationConfirmation.jsp" class="btn btn-danger btn-block">Confirm Cancellation <i class="fa fa-angle-right"></i></a></td>
-                            <td><a href="#" class="btn btn-success btn-block">Discard Cancellation <i class="fa fa-angle-right"></i></a></td>
+							<td><a href="CancelOrderTransaction" class="btn btn-danger btn-block">Confirm Cancellation <i class="fa fa-angle-right"></i></a></td>
+                            <td><a href="ManageOrders.jsp" class="btn btn-success btn-block">Discard Cancellation <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
 				</table>

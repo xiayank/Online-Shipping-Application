@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+          <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,72 +119,73 @@ hr{
   </div>
 </nav>
 <!--results -->
-<div class=" ">
+
     <div class="text-center">
-  <h2>Order Detail of Order number: 246871236</h2>
+  <h2>Order Detail of Order number: ${orderNumber }</h2>
   
   <br>
-    </div>
-    <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th>Seller name</th>
-        <th>Shipping status</th>
-        <th>Total price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><div class="col-sm-12">
-      <a href="#demo3" data-toggle="collapse">
-        <img src="Pics/adidas.jpg" class=" person" alt="Random Name" width="100" height="100">
-      </a>
-      </div>
-        </td>
-        <td>ADIDAS RUNNING SHOE</td>
-        <td>1</td>
-        <td>Adidas</td>
-        <td>shipping</td>
-        <td>$199</td>  
-        <td><a href="ProductDetail.jsp" type="button" class="btn btn-success">View</a></td>
-          <td><a href="CancelOrder.jsp" type="button" class="btn btn-danger">Cancel</a></td>
-      </tr>
-   
-     
-    </tbody>
-  </table>
-</div>
-    <hr>
-<div class="container">
-	<table id="cart" class="  table table-hover table-condensed">
+      <!--shopping list-->
+    <div class="container">
+	<table id="cart" class="table table-hover table-condensed">
     				<thead>
 						<tr>
-							<th style="width:20%">Order number</th>
-                            <th style="width:15%">Ordered date</th>							
-							<th style="width:15%">Order Total</th>
-                            <th style="width:15%">Shipping address</th>
-							
-							
+							<th style="width:36%">Product</th>
+                            <th style="width:8%">Seller</th>
+							<th style="width:8%">Price</th>
+							<th style="width:8%">Quantity</th>
+                            <th style="width:8%">Estimated delivery date</th>
+							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%">Check to Cancel</th>
 						</tr>
 					</thead>
+					
+					
+					<c:forEach var="anOrderItem" items="${orderItemsList}">
 					<tbody>
+					
 						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-4 hidden-xs"><img src= ${anOrderItem.products.productThumbnail } alt="..." class="img-responsive"/></div>
+									<div class="col-sm-4">
+										<h4 class="nomargin"> ${anOrderItem.products.productName }</h4>
+										<p></p>
+									</div>
+								</div>
+							</td>
+                            <td data-th="Seller"> ${anOrderItem.products.sellerName }</td>
+							<td data-th="Price">${anOrderItem.products.price }$ </td>
+							<td data-th="Quantity">${anOrderItem.requestQuantity }</td>
+                            <td data-th="date" class="text-center">1/1/2017</td>
+							<td data-th="Subtotal" class="text-center">${anOrderItem.subTotal}</td>
 							
-                            <td data-th="Seller">246871236</td>
-                            <td data-th="Seller">1/1/2017</td>
-							<td data-th="Price">$199</td>
-                            <td data-th="Price">2527H ST APT1, Lincoln, NE</td>
-							
+								
+								<form action = "CancelOrder" method = "post"  />
+						        <input type="hidden" name="orderItemId" value="<c:out value="${anOrderItem.id}" />">
+						        <td> <button type="submit" class="btn btn-danger btn-sm">Delete</button>   </td>
+						        </form>
+								
+								
+								
+<!-- 							<button class="btn btn-danger btn-sm">Delete<i class="fa fa-trash-o"></i></button>						
+                                <form>
+                            <div class="checkbox">
+                            <label><input type="checkbox" value=""></label>
+                                 </div>
+                                </form> -->
 							
 						</tr>
+						
+						
 					</tbody>
+        </c:forEach>
+					<tfoot>
+                     
 
-				</table>        
-    </div>
-    <hr>
+					</tfoot>
+				</table>
+</div>
+   
     
     
 </body>
