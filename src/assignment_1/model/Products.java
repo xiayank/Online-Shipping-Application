@@ -205,20 +205,20 @@ public class Products {
 				
 			}
 		}
-//		System.out.println(selectedProducts.size());
-//		for(Products aFullProduct :selectedProducts){
-//			ProductsInfo info = new ProductsInfo();
-//			//System.out.println(aFullProduct.productName);
-//			String category = info.returnCategoryByCategoryID(aFullProduct.productCategoryIndex);
-//			String sellerName = info.returnSellerNameByUserID(aFullProduct.sellerId);
-//			ProductsInfo reviewInfo = info.returnReviewBeanByProductID(aFullProduct.ID);
-//			
-//			aFullProduct.setProductCategory(category);
-//			aFullProduct.setSellerName(sellerName);
-//			aFullProduct.setRating(reviewInfo.rating);
-//			aFullProduct.setReviewDate(reviewInfo.reviewDate);
-//			aFullProduct.setReview(reviewInfo.review);
-//		}
+		//System.out.println(selectedProducts.size());
+		for(Products aFullProduct :selectedProducts){
+			ProductsInfo info = new ProductsInfo();
+			//System.out.println(aFullProduct.productName);
+			String category = info.returnCategoryByCategoryID(aFullProduct.productCategoryIndex);
+			String sellerName = info.returnSellerNameByUserID(aFullProduct.sellerId);
+			ProductsInfo reviewInfo = info.returnReviewBeanByProductID(aFullProduct.ID);
+			
+			aFullProduct.setProductCategory(category);
+			aFullProduct.setSellerName(sellerName);
+			aFullProduct.setRating(reviewInfo.rating);
+			aFullProduct.setReviewDate(reviewInfo.reviewDate);
+			aFullProduct.setReview(reviewInfo.review);
+		}
 		
 		DB.closeConnection();
 		
@@ -248,7 +248,12 @@ public class Products {
 		DB.closeConnection();
 		return null;
 	}
-	
+	public void updateAvailableQuantityDAO(int productId, int newQuantity)  {
+		ProductsDB DB =new ProductsDB();
+		DB.connectMeIn();
+		DB.updateAvailableQuantityDAO(productId, newQuantity);
+		DB.closeConnection();
+	}
 	
 	
 }

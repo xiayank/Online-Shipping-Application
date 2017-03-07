@@ -1,6 +1,8 @@
 package assignment_1.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import assignment_1.model.OrderItems;
 import assignment_1.model.Orders;
+import assignment_1.model.Products;
 import assignment_1.model.Transactions;
 
 /**
@@ -34,7 +37,7 @@ public class CancelOrderTransaction extends HttpServlet {
 		OrderItems anOrderItems = new OrderItems();
 		//1.set item status to canceled = 1 
 		anOrderItems = anOrderItems.returnOrderItemsById(cancelOrderItemId);
-		anOrderItems.chanegItemStatus(cancelOrderItemId);
+		anOrderItems.chanegItemStatusToCancel(cancelOrderItemId);
 		
 		//2.put refund
 		Orders anOrders = new Orders();
@@ -44,12 +47,24 @@ public class CancelOrderTransaction extends HttpServlet {
 		Transactions anTransactions = new Transactions(); 
 		int balance = anTransactions.returnBalanceByCardNumber(refundCardNumber);
 		int newBalance = refund + balance;
+		System.out.println(refund);
+		System.out.println(balance);
+		System.out.println(newBalance);
 		anTransactions.updateBalance(refundCardNumber, newBalance);
 		
-		//3.put back available quantity
+		//3.put back canceled quantity
 		int refundQuantity = anOrderItems.getRequestQuantity();
+		Products aProducts = new Products();
+		aProducts = aProducts.returnProductsByID(anOrderItems.getProductId());
+		int availableQuantity = aProducts.getAvailableQuantity();
+		int newQuantity = refundQuantity + availableQuantity;
+		
+		aProducts.updateAvailableQuantityDAO(anOrderItems.getProductId(), newQuantity);
 		
 		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ManageOrders.jsp");
+		dispatcher.forward(request, response);
 		
 	}
 

@@ -68,7 +68,7 @@ public class OrderItemsDB {
 		    return orderItemsList;
 		}
 	
-	public void chanegItemStatusDAO(int itemsId)  {
+	public void chanegItemStatusToCancelDAO(int itemsId)  {
 		String SQL = "UPDATE OrderItems SET Status = 1 WHERE Id = ? ";
 	    try {
 			ps = conn.prepareStatement(SQL);

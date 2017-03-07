@@ -83,7 +83,22 @@ public class ProductsDB {
 	    return productsList;
 	}
 	
-	
+	public void updateAvailableQuantityDAO(int productId, int newQuantity)  {
+			
+			String SQL = "UPDATE Products SET AvailableQuantity = ? WHERE Id = ? ";
+		    try {
+				ps = conn.prepareStatement(SQL);
+				ps.setInt(1, newQuantity);
+			    ps.setInt(2, productId);
+			    ps.executeUpdate();
+			    
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		
+		}
 	
 	
 	
