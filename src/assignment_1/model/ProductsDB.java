@@ -90,17 +90,18 @@ public void editProductsDAO(Products aProduct)  {
 	  int quantity = aProduct.getAvailableQuantity();
 	  String description = aProduct.getProductDescription();
 	  int id = aProduct.getID();
-	  try {
-		  PreparedStatement ps = conn.prepareStatement(
-				  "UPDATE Products SET ProductName = ?, Price = ?, AvailableQuantity = ?, ProductDescription = ? WHERE Id = ? ");
-	 
-		  ps.setString(2,Username);
-		  ps.setInt(5,price);
-		  ps.setInt(6,quantity);
-		  ps.setString(4,description);
-		  ps.setInt(1,id);
+	 String query = "UPDATE Products SET ProductName = ?, Price = ?, AvailableQuantity = ?, ProductDescription = ? WHERE Id = ?";
+
+	 try {
+		  ps = conn.prepareStatement(query);
+		  ps.setString(1, Username);
+		  ps.setInt(2, price);
+		  ps.setInt(3, quantity);
+		  ps.setString(4, description);
+		  ps.setInt(5, id);
+		  
 		  ps.executeUpdate();
-		    ps.close();
+		  ps.close();
 	    
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

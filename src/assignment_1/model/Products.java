@@ -280,8 +280,6 @@ public class Products {
 		aProduct.setPrice(price); 
 		aProduct.setProductDescription(description);
 		aProduct.setAvailableQuantity(quantity);
-	
-		
 		ProductsDB uDB = new ProductsDB();
 		uDB.connectMeIn();
 		uDB.editProductsDAO(aProduct);
