@@ -158,7 +158,8 @@
     <h2>${selectedProduct.productName}</h2><input name = "name" type="text"><br>
     <h4>Price<code> ${selectedProduct.price }$</code><input name = "price" type="number" class=" text-center"></h4>
     <h4>Available quantity <code>${selectedProduct.availableQuantity }</code><input name = "quantity" type="number" class=" text-center"></h4>
-   
+   <h4>question<code>${QA.question}</code><input name = "question" type="text" class=" text-center"></h4>
+   <h4>answer<code>${QA.answer}</code><input name = "answer" type="text" class=" text-center"></h4>
 							
     <div class="well well-sm"><h4>Description </h4>${selectedProduct.productDescription }
       <br><input name = "Description" type="text"><br>

@@ -21,14 +21,14 @@ public class Products {
 	String question;
 	String answer;
 	
-	public Products(String productName, String category,int price, int quantity, int sellerID,String Description,String productimage) {
+	public Products(String productName, int category,int price, int quantity, int sellerID,String Description,String productimage) {
 		super();
 		this.productName = productName;
 		this.price = price;
 		this.availableQuantity = quantity;
 		this.productDescription = Description;
 		this.sellerId = sellerID;
-		this.productCategory = category;
+		this.productCategoryIndex = category;
 		this.productThumbnail = productimage;
 	}
 	
@@ -217,19 +217,19 @@ public class Products {
 			}
 		}
 //		System.out.println(selectedProducts.size());
-//		for(Products aFullProduct :selectedProducts){
-//			ProductsInfo info = new ProductsInfo();
-//			//System.out.println(aFullProduct.productName);
-//			String category = info.returnCategoryByCategoryID(aFullProduct.productCategoryIndex);
-//			String sellerName = info.returnSellerNameByUserID(aFullProduct.sellerId);
-//			ProductsInfo reviewInfo = info.returnReviewBeanByProductID(aFullProduct.ID);
+		for(Products aFullProduct :selectedProducts){
+			ProductsInfo info = new ProductsInfo();
+			//System.out.println(aFullProduct.productName);
+			String category = info.returnCategoryByCategoryID(aFullProduct.productCategoryIndex);
+			String sellerName = info.returnSellerNameByUserID(aFullProduct.sellerId);
+			ProductsInfo reviewInfo = info.returnReviewBeanByProductID(aFullProduct.ID);
 //			
-//			aFullProduct.setProductCategory(category);
-//			aFullProduct.setSellerName(sellerName);
-//			aFullProduct.setRating(reviewInfo.rating);
-//			aFullProduct.setReviewDate(reviewInfo.reviewDate);
-//			aFullProduct.setReview(reviewInfo.review);
-//		}
+			aFullProduct.setProductCategory(category);
+			aFullProduct.setSellerName(sellerName);
+			aFullProduct.setRating(reviewInfo.rating);
+			aFullProduct.setReviewDate(reviewInfo.reviewDate);
+			aFullProduct.setReview(reviewInfo.review);
+		}
 		
 		DB.closeConnection();
 		

@@ -145,7 +145,28 @@ public ArrayList<ProductsInfo>returnAllProductQADB(){
     return productsList;
 }
 
+public void editProductsInfoDAO(ProductsInfo aInfo){
+	String question = aInfo.getQuestion();
+	String answer = aInfo.getAnswer();
+	  int id = aInfo.getProductID();
+	 String query = "UPDATE ProductQA SET Question = ?, Answer = ? WHERE ProductId = ?";
 
+	 try {
+		  ps = conn.prepareStatement(query);
+		  ps.setString(1, question);
+		  ps.setString(2, answer);
+		  ps.setInt(3, id);
+	
+		  ps.executeUpdate();
+		  ps.close();
+	    
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+
+}
 	public void connectMeIn() {
 		try{
 			//Register the JDBC driver

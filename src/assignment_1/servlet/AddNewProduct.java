@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import assignment_1.model.Products;
+import assignment_1.model.ProductsInfo;
 import assignment_1.model.Users;
 
 /**
@@ -37,12 +38,13 @@ public class AddNewProduct extends HttpServlet {
 		int price = Integer.parseInt(request.getParameter("price"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		String description = request.getParameter("Description");
-		String category = request.getParameter("category");
+		int category = Integer.parseInt(request.getParameter("category"));
 		String productimage = request.getParameter("productiamge");
+		
 		HttpSession session = request.getSession();
 		Users aUser = (Users)session.getAttribute("userBean");
-		
 		int id = aUser.getID();
+		
 		
 		Products aProduct = new Products(productName,category,price,quantity,id,description,productimage);  
 				

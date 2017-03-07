@@ -38,12 +38,11 @@ public ArrayList<Products>returnAllProductsDB(){
 				Products aProduct = new Products();//new a product object every iteration 
 				aProduct.setID(rs.getInt(1));
 				aProduct.setProductName(rs.getString(2));
-			
+				aProduct.setProductCategoryIndex(rs.getInt(3));
 				aProduct.setProductDescription(rs.getString(4));
 				aProduct.setPrice(rs.getInt(5));
 				aProduct.setAvailableQuantity(rs.getInt(6));
 				aProduct.setSellerId(rs.getInt(8));
-				aProduct.setProductCategory(rs.getString(3));
 				aProduct.setProductThumbnail(rs.getString(11));
 				
 				productsList.add(aProduct);
@@ -120,11 +119,12 @@ public void editProductsDAO(Products aProduct)  {
 			  String description = aProduct.getProductDescription();
 			  int price = aProduct.getPrice();
 			  int quantity = aProduct.getAvailableQuantity();
+			  int category = aProduct.getProductCategoryIndex();
 			  int sellerID = aProduct.getSellerId();
 			  String thumbnail = aProduct.getProductThumbnail();
-			  sql = "INSERT INTO Products (ProductName, Price, AvailableQuantity,sellerId,ProductDescription,ProductThumbnail)" +
 			          "VALUES ('" + ProductName +
 					  "', '" + price + 
+					  "', '" + category + 
 					  "', '" + quantity + 
 					  "', '" + sellerID +
 					  "', '" + description +

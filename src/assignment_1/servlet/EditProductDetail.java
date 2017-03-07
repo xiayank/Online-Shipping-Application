@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import assignment_1.model.Products;
+import assignment_1.model.ProductsInfo;
 
 /**
  * Servlet implementation class EditProductDetail
@@ -46,12 +47,23 @@ public class EditProductDetail extends HttpServlet {
 		int quantity =Integer.parseInt(request.getParameter("quantity"));
 		String description = request.getParameter("Description");
 		int ID = Integer.parseInt(request.getParameter("ID"));
+		String question = request.getParameter("question");
+		String answer = request.getParameter("answer");
+		
 		Products aProduct = new Products();
 		aProduct = aProduct.returnProductsByID(ID);
-		
-			aProduct.editProducts(aProduct, name, price,quantity,description);
-	
+		aProduct.editProducts(aProduct, name, price,quantity,description);
 		request.setAttribute("selectedProduct", aProduct);
+		
+		ProductsInfo aInfo = new ProductsInfo();
+		aInfo = aInfo.returnQABeanByProductID(ID);
+		//System.out.println(aInfo);
+		aInfo.editQA(aInfo, question, answer);
+		request.setAttribute("QA", aInfo);
+		
+		
+	
+	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("EditProductDetails.jsp");
 		dispatcher.forward(request, response);
 		}

@@ -115,7 +115,7 @@
   <form action = "AddNewProduct" method = "post" >
     <h2>Name</h2><input name = "productname" type="text"><br>
     <h4>Price<input name = "price" type="number" class=" text-center"></h4>
-     <h4>category<input name = "category" type="number" class=" text-center"></h4>
+     <h4>category index<input name = "category" type="number" class=" text-center"></h4>
     <h4>Available quantity<input name = "quantity" type="number" class=" text-center"></h4>	
     <h4>image address<input name = "productiamge" type="text" class=" text-center"></h4>			
    <h4>Description </h4>

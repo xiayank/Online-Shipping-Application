@@ -202,5 +202,12 @@ public class ProductsInfo {
 		return null;
 		
 	}
-	
+	public void editQA(ProductsInfo aInfo,String question, String answer){
+		aInfo.setQuestion(question);
+		aInfo.setAnswer(answer);
+		ProductsInfoDB uDB = new ProductsInfoDB();
+		uDB.editProductsInfoDAO(aInfo);
+		
+		uDB.closeConnection();
+	}
 }
