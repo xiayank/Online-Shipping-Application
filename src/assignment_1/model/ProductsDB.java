@@ -122,6 +122,7 @@ public void editProductsDAO(Products aProduct)  {
 			  int category = aProduct.getProductCategoryIndex();
 			  int sellerID = aProduct.getSellerId();
 			  String thumbnail = aProduct.getProductThumbnail();
+			  sql = "INSERT INTO Products (ProductName, Price, ProductCategoryIndex, AvailableQuantity, sellerId, ProductDescription, ProductThumbnail)" +
 			          "VALUES ('" + ProductName +
 					  "', '" + price + 
 					  "', '" + category + 
