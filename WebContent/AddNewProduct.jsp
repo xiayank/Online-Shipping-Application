@@ -115,9 +115,12 @@
   <form action = "AddNewProduct" method = "post" >
     <h2>Name</h2><input name = "productname" type="text"><br>
     <h4>Price<input name = "price" type="number" class=" text-center"></h4>
-     <h4>category index<input name = "category" type="number" class=" text-center"></h4>
+     <h4>category index<select name="category">
+  <option value="1">1</option>
+  <option value="2">2</option>
+</select>
     <h4>Available quantity<input name = "quantity" type="number" class=" text-center"></h4>	
-    <h4>image address<input name = "productiamge" type="text" class=" text-center"></h4>			
+    <h4>image address<input name = "productimage" type="text" class=" text-center"></h4>			
    <h4>Description </h4>
    <br><input name = "Description" type="text"><br>
        <button  class="btn btn-primary" type="submit" class="btn btn-success"> Save</button>

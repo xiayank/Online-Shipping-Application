@@ -83,6 +83,7 @@ public ArrayList<Products>returnAllProductsDB(){
 	    
 	    return productsList;
 	}
+
 public void editProductsDAO(Products aProduct)  {
 	String Username = aProduct.getProductName();
 	  int price = aProduct.getPrice();
@@ -106,41 +107,9 @@ public void editProductsDAO(Products aProduct)  {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
-
 
 }
 	
-	public void addProductsDAO(Products aProduct){
-		try {
-			  stmt = conn.createStatement();
-			  String sql;
-			  
-			  String ProductName = aProduct.getProductName();
-			  String description = aProduct.getProductDescription();
-			  int price = aProduct.getPrice();
-			  int quantity = aProduct.getAvailableQuantity();
-			  int category = aProduct.getProductCategoryIndex();
-			  int sellerID = aProduct.getSellerId();
-			  String thumbnail = aProduct.getProductThumbnail();
-			  sql = "INSERT INTO Products (ProductName, Price, ProductCategoryIndex, AvailableQuantity, sellerId, ProductDescription, ProductThumbnail)" +
-			          "VALUES ('" + ProductName +
-					  "', '" + price + 
-					  "', '" + category + 
-					  "', '" + quantity + 
-					  "', '" + sellerID +
-					  "', '" + description +
-					  "', '" + thumbnail + "')";
-			  
-			 
-			  stmt.executeUpdate(sql);
-			  
-			  
-			  } catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-			}
-	}
 
 	public void updateAvailableQuantityDAO(int productId, int newQuantity)  {
 			
@@ -159,7 +128,36 @@ public void editProductsDAO(Products aProduct)  {
 		
 		}
 	
-	
+	public void addProductsDAO(Products aProduct){
+		try {
+			  stmt = conn.createStatement();
+			  String sql;
+			  
+			  String ProductName = aProduct.getProductName();
+			  String description = aProduct.getProductDescription();
+			  int price = aProduct.getPrice();
+			  int quantity = aProduct.getAvailableQuantity();
+			  int sellerID = aProduct.getSellerId();
+			  int categoryindex = aProduct.getProductCategoryIndex();
+			  String thumbnail = aProduct.getProductThumbnail();
+			  sql = "INSERT INTO Products (ProductName, Price, AvailableQuantity,ProductCategoryIndex,sellerId,ProductDescription,ProductThumbnail)" +
+			          "VALUES ('" + ProductName +
+					  "', '" + price + 
+					  "', '" + quantity + 
+					  "', '" + categoryindex + 
+					  "', '" + sellerID +
+					  "', '" + description +
+					  "', '" + thumbnail + "')";
+			  
+			 
+			  stmt.executeUpdate(sql);
+			  
+			  
+			  } catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+	}
 	
 
 	public void connectMeIn() {

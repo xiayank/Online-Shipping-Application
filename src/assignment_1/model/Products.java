@@ -296,6 +296,7 @@ public class Products {
 	}
 
 	public void addProducts(Products aProduct){
+		
 		ProductsDB uDB = new ProductsDB();
 		uDB.connectMeIn();
 		uDB.addProductsDAO(aProduct);
