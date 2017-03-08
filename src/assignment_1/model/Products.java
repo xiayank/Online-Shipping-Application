@@ -279,11 +279,15 @@ public class Products {
 	}
 
 	
-	public void editProducts(Products aProduct,String productName, int price, int quantity, String description){
+	public void editProducts(Products aProduct,String productName, int price, int quantity, String description, int categoryindex, String imageaddress){
 		aProduct.setProductName(productName); 
 		aProduct.setPrice(price); 
 		aProduct.setProductDescription(description);
 		aProduct.setAvailableQuantity(quantity);
+		aProduct.setProductCategoryIndex(categoryindex);
+		aProduct.setProductThumbnail(imageaddress);
+		ProductsInfo aInfo = new ProductsInfo();
+		aProduct.setProductCategory(aInfo.returnCategoryByCategoryID(categoryindex));
 		ProductsDB uDB = new ProductsDB();
 		uDB.connectMeIn();
 		uDB.editProductsDAO(aProduct);

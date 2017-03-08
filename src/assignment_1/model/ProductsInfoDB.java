@@ -145,7 +145,7 @@ public ArrayList<ProductsInfo>returnAllProductQADB(){
     return productsList;
 }
 
-public void editProductsInfoDAO(ProductsInfo aInfo){
+public void editProductsQADAO(ProductsInfo aInfo){
 	String question = aInfo.getQuestion();
 	String answer = aInfo.getAnswer();
 	  int id = aInfo.getProductID();

@@ -49,19 +49,20 @@ public class EditProductDetail extends HttpServlet {
 		int ID = Integer.parseInt(request.getParameter("ID"));
 		String question = request.getParameter("question");
 		String answer = request.getParameter("answer");
-		
+		String imageaddress = request.getParameter("imageaddress");
+		int categoryindex= Integer.parseInt(request.getParameter("category"));
 		Products aProduct = new Products();
 		aProduct = aProduct.returnProductsByID(ID);
-		aProduct.editProducts(aProduct, name, price,quantity,description);
+		aProduct.editProducts(aProduct, name, price,quantity,description,categoryindex,imageaddress);
 		request.setAttribute("selectedProduct", aProduct);
 		
 		ProductsInfo aInfo = new ProductsInfo();
 		aInfo = aInfo.returnQABeanByProductID(ID);
-		//System.out.println(aInfo);
-		aInfo.editQA(aInfo, question, answer);
+		
+		aInfo.editQA(aInfo, ID, question, answer);
 		request.setAttribute("QA", aInfo);
 		
-		
+	
 	
 	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("EditProductDetails.jsp");

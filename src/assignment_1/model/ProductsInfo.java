@@ -211,12 +211,13 @@ public class ProductsInfo {
 		uDB.addProductsQADAO(aInfo);
 		uDB.closeConnection();
 	}
-	public void editQA(ProductsInfo aInfo,String question, String answer){
+	public void editQA(ProductsInfo aInfo,int ID, String question, String answer){
 		aInfo.setQuestion(question);
 		aInfo.setAnswer(answer);
+		aInfo.setProductID(ID);
 		ProductsInfoDB uDB = new ProductsInfoDB();
 		uDB.connectMeIn();
-		uDB.editProductsInfoDAO(aInfo);
+		uDB.editProductsQADAO(aInfo);
 		uDB.closeConnection();
 	}
 }

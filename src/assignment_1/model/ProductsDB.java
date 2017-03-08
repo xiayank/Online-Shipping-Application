@@ -90,7 +90,9 @@ public void editProductsDAO(Products aProduct)  {
 	  int quantity = aProduct.getAvailableQuantity();
 	  String description = aProduct.getProductDescription();
 	  int id = aProduct.getID();
-	 String query = "UPDATE Products SET ProductName = ?, Price = ?, AvailableQuantity = ?, ProductDescription = ? WHERE Id = ?";
+	  int categoryindex = aProduct.getProductCategoryIndex();
+	  String thumbnail = aProduct.getProductThumbnail();
+	 String query = "UPDATE Products SET ProductName = ?, Price = ?, AvailableQuantity = ?, ProductDescription = ?, ProductCategoryIndex = ?, ProductThumbnail = ? WHERE Id = ?";
 
 	 try {
 		  ps = conn.prepareStatement(query);
@@ -98,7 +100,10 @@ public void editProductsDAO(Products aProduct)  {
 		  ps.setInt(2, price);
 		  ps.setInt(3, quantity);
 		  ps.setString(4, description);
-		  ps.setInt(5, id);
+		  ps.setInt(5, categoryindex);
+		  ps.setString(6, thumbnail);
+		  ps.setInt(7, id);
+		
 		  
 		  ps.executeUpdate();
 		  ps.close();

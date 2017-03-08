@@ -135,7 +135,7 @@
         <div class="item">
           <img src=${selectedProduct.productThumbnail} alt="Image">
           <div class="carousel-caption">
-            <h3>${selectedProduct.productName }</h3>
+            
 
           </div>      
         </div>
@@ -155,13 +155,19 @@
   <div class="col-sm-4">
   <form action = "EditProductDetail" method = "post">
   
-    <h2>${selectedProduct.productName}</h2><input name = "name" type="text"><br>
-    <h4>Price<code> ${selectedProduct.price }$</code><input name = "price" type="number" class=" text-center"></h4>
-    <h4>Available quantity <code>${selectedProduct.availableQuantity }</code><input name = "quantity" type="number" class=" text-center"></h4>
-   <h4>question<code>${QA.question}</code><input name = "question" type="text" class=" text-center"></h4>
-   <h4>answer<code>${QA.answer}</code><input name = "answer" type="text" class=" text-center"></h4>
+    <h2>Product Name: ${selectedProduct.productName}</h2><input name = "name" type="text"><br>
+    <h4>Category Index:<code> ${selectedProduct.productCategoryIndex}</code><select name="category">
+    					<option value="1">1</option>
+ 						 <option value="2">2</option>
+						</select></h4>
+    <h4>Category:<code> ${selectedProduct.productCategory }</code></h4>
+    <h4>Price:<code> ${selectedProduct.price }</code><input name = "price" type="number" class=" text-center"></h4>
+    <h4>Available quantity: <code>${selectedProduct.availableQuantity }</code><input name = "quantity" type="number" class=" text-center"></h4>
+   <h4>Image address:<code>${selectedProduct.productThumbnail}</code><input name = "imageaddress" type="text" class=" text-center"></h4>
+   <h4>question:<code>${QA.question}</code><input name = "question" type="text" class=" text-center"></h4>
+   <h4>answer:<code>${QA.answer}</code><input name = "answer" type="text" class=" text-center"></h4>
 							
-    <div class="well well-sm"><h4>Description </h4>${selectedProduct.productDescription }
+    <div class="well well-sm"><h4>Description: </h4>${selectedProduct.productDescription }
       <br><input name = "Description" type="text"><br>
     </div>
      
