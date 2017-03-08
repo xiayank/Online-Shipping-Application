@@ -108,6 +108,7 @@ public void editProductsDAO(Products aProduct)  {
 	}
 	
 
+
 }
 	
 	public void addProductsDAO(Products aProduct){
@@ -140,6 +141,27 @@ public void editProductsDAO(Products aProduct)  {
 					e.printStackTrace();
 			}
 	}
+
+	public void updateAvailableQuantityDAO(int productId, int newQuantity)  {
+			
+			String SQL = "UPDATE Products SET AvailableQuantity = ? WHERE Id = ? ";
+		    try {
+				ps = conn.prepareStatement(SQL);
+				ps.setInt(1, newQuantity);
+			    ps.setInt(2, productId);
+			    ps.executeUpdate();
+			    
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		
+		}
+	
+	
+	
+
 	public void connectMeIn() {
 		try{
 			//Register the JDBC driver

@@ -216,14 +216,14 @@ public class Products {
 				
 			}
 		}
-//		System.out.println(selectedProducts.size());
+
 		for(Products aFullProduct :selectedProducts){
 			ProductsInfo info = new ProductsInfo();
 			//System.out.println(aFullProduct.productName);
 			String category = info.returnCategoryByCategoryID(aFullProduct.productCategoryIndex);
 			String sellerName = info.returnSellerNameByUserID(aFullProduct.sellerId);
 			ProductsInfo reviewInfo = info.returnReviewBeanByProductID(aFullProduct.ID);
-//			
+
 			aFullProduct.setProductCategory(category);
 			aFullProduct.setSellerName(sellerName);
 			aFullProduct.setRating(reviewInfo.rating);
@@ -237,7 +237,7 @@ public class Products {
 //		System.out.println(a.productCategoryIndex);
 //	}
 		return selectedProducts;
-		
+	
 	}
 	public ArrayList<Products> returnProductsBySellerID(int sellerId){
 		ProductsDB DB =new ProductsDB();
@@ -274,6 +274,7 @@ public class Products {
 		DB.closeConnection();
 		return null;
 	}
+
 	
 	public void editProducts(Products aProduct,String productName, int price, int quantity, String description){
 		aProduct.setProductName(productName); 
@@ -285,8 +286,16 @@ public class Products {
 		uDB.editProductsDAO(aProduct);
 		uDB.closeConnection();
 	}
+
+
+	public void updateAvailableQuantityDAO(int productId, int newQuantity)  {
+		ProductsDB DB =new ProductsDB();
+		DB.connectMeIn();
+		DB.updateAvailableQuantityDAO(productId, newQuantity);
+		DB.closeConnection();
+	}
+
 	public void addProducts(Products aProduct){
-	
 		ProductsDB uDB = new ProductsDB();
 		uDB.connectMeIn();
 		uDB.addProductsDAO(aProduct);

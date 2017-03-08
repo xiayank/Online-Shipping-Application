@@ -131,4 +131,13 @@ public class OrderItems {
 		return currentOrderItems;
 		
 	}
+	public void chanegItemStatusToCancel(int itemsId)  {
+		OrderItemsDB db = new OrderItemsDB();
+		db.connectMeIn();
+		db.chanegItemStatusToCancelDAO(itemsId);
+		db.closeConnection();
+	}
+	
+	
+	
 }

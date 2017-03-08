@@ -81,7 +81,11 @@ public class TransactionConfirmation extends HttpServlet {
 				
 				//add current order into database
 				anOrder.addOrder(anOrder);
-				System.out.println(activeUser.getID());
+
+				//System.out.println(activeUser.getID());
+
+				//System.out.println(activeUser.getUserId());
+
 				//after add into database, then get the primary key Id from database
 				Orders currentOrder = new Orders();
 				currentOrder = currentOrder.returnOrderByOrderNumber(anOrder.getOrderNumber());
@@ -99,7 +103,7 @@ public class TransactionConfirmation extends HttpServlet {
 //					anOrderItems.setStatus(1);
 					
 					itemsOfAnOrder.add(anOrderItems);
-					System.out.println(aShoppingCartBean.getaProduct().getID()+" " + currentOrder.getId() + " "+aShoppingCartBean.getRequestQuantity());
+				//	System.out.println(aShoppingCartBean.getaProduct().getID()+" " + currentOrder.getId() + " "+aShoppingCartBean.getRequestQuantity());
 				}
 				
 				anOrder.setItemsOfAnOrder(itemsOfAnOrder);

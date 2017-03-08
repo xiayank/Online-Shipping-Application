@@ -140,7 +140,12 @@
 							
 							<td colspan="5" class="hidden-xs"></td>
 							
-							<td><a href="CancelOrderTransaction" class="btn btn-danger btn-block">Confirm Cancellation <i class="fa fa-angle-right"></i></a></td>
+							<form action = "CancelOrderTransaction" method = "post"  />
+						        <input type="hidden" name="orderItemId" value="<c:out value="${anOrderItem.id}" />">
+						        <td> <button type="submit" class="btn btn-danger btn-block">Confirm Cancellation</button>   </td>
+						        </form>
+						        
+							
                             <td><a href="ManageOrders.jsp" class="btn btn-success btn-block">Discard Cancellation <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
