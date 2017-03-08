@@ -51,10 +51,25 @@ public class AddNewProduct extends HttpServlet {
 		Products aProduct = new Products(productName,category,price,quantity,id,description,productimage);  
 		aProduct.setProductCategory(categories);		
 		aProduct.addProducts(aProduct);
-		Products aProduct2 = new Products();
 		
-			ArrayList<Products> productResult = new ArrayList<Products>();
+		
+		
+	
+		
+		
+		
+		
+		Products aProduct2 = new Products();
+		ArrayList<Products> productResult = new ArrayList<Products>();
 			productResult = aProduct2.returnProductsBySellerID(id);
+			for(Products aProduct3 : productResult){
+				if(aProduct3.getProductName().equals(productName) && aProduct3.getProductCategoryIndex()== category
+						&& aProduct3.getPrice()== price){
+					int productid = aProduct3.getID();
+					aInfo.addQA(aInfo, productid, question, answer);
+					System.out.println("id" + productid);
+				}
+			}
 				request.setAttribute("productResult", productResult);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ManageProducts.jsp");
 				dispatcher.forward(request, response);

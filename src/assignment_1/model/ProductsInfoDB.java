@@ -167,6 +167,30 @@ public void editProductsInfoDAO(ProductsInfo aInfo){
 	
 
 }
+
+public void addProductsQADAO(ProductsInfo aInfo){
+	try {
+		 stmt = conn.createStatement();
+		  String sql;
+		  
+		  String question = aInfo.getQuestion();
+		  String answer = aInfo.getAnswer();
+		  int ProductId = aInfo.getProductID();
+		  sql = "INSERT INTO ProductQA (ProductId,Question,Answer)" +
+		          "VALUES ('" + ProductId +
+		          "', '" + question +
+				  "', '" + answer + "')";
+		  
+		 
+		  stmt.executeUpdate(sql);
+		  
+		  
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+}
+
 	public void connectMeIn() {
 		try{
 			//Register the JDBC driver
