@@ -401,9 +401,9 @@ hr{
     </ul>
   </div>
 </nav>
-		<%-- <c:set var="guess" value="<c:out value="${validCard}" />"/>
+		<c:set var="guess" value="<c:out value="${validCard}" />"/>
 		<c:choose>
-		  <c:when test="${guess  == 0}">
+		  <c:when test="${validCard  == 0}">
 		    0
 		  </c:when>
 		  <c:when test="${guess == 1}">
@@ -412,7 +412,8 @@ hr{
 		  <c:otherwise>
 		    2
 		  </c:otherwise>
-		</c:choose> --%>
+		</c:choose> 
+		
     <h1 class="container text-center">Your order has been placed</h1>
     <!--shopping list-->
     <div class="container">
