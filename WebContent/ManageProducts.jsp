@@ -80,6 +80,7 @@
       <tr>
         <th></th>
         <th>Name</th>
+        <th>Category</th>
         <th>available quantity</th>
         <th>Price</th>
         <th></th>
@@ -100,6 +101,7 @@
       </div>
         </td>
         <td>${productResultBean.productName}</td>
+        <td>${productResultBean.productCategory}</td>
         <td>${productResultBean.availableQuantity}</td>
         <td>${productResultBean.price} $</td>
    

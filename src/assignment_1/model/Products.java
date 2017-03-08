@@ -248,6 +248,9 @@ public class Products {
 	//System.out.println(allProducts.size());
 			for(Products aProduct : allProducts){
 			if(aProduct.sellerId == sellerId){
+				ProductsInfo aInfo = new ProductsInfo();
+				String categories = aInfo.returnCategoryByCategoryID(aProduct.getProductCategoryIndex());
+				aProduct.setProductCategory(categories); 
 					selectedProducts.add(aProduct);
 				}
 			}

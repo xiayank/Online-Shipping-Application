@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import assignment_1.model.Products;
+import assignment_1.model.ProductsInfo;
 import assignment_1.model.Users;
 
 /**
@@ -38,11 +39,12 @@ public class ManageProducts extends HttpServlet {
 		Users aUser = (Users)session.getAttribute("userBean");
 		int id = aUser.getID();
 		
-		 
+	
+		
 		ArrayList<Products> searchResult = new ArrayList<Products>();
 		searchResult = aProduct.returnProductsBySellerID(id);
 
-		
+	
 		request.setAttribute("productResult", searchResult);
 	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ManageProducts.jsp");

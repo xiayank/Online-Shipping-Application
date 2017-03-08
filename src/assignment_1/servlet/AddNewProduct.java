@@ -40,12 +40,16 @@ public class AddNewProduct extends HttpServlet {
 		String description = request.getParameter("Description");
 		int category = Integer.parseInt(request.getParameter("category"));
 		String productimage = request.getParameter("productimage");
+		String question = request.getParameter("question");
+		String answer = request.getParameter("answer");
 		HttpSession session = request.getSession();
 		Users aUser = (Users)session.getAttribute("userBean");
 		int id = aUser.getID();
+		ProductsInfo aInfo = new ProductsInfo();
+		String categories = aInfo.returnCategoryByCategoryID(category);
 		
 		Products aProduct = new Products(productName,category,price,quantity,id,description,productimage);  
-				
+		aProduct.setProductCategory(categories);		
 		aProduct.addProducts(aProduct);
 		Products aProduct2 = new Products();
 		
