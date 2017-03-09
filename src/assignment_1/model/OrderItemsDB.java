@@ -48,7 +48,7 @@ public class OrderItemsDB {
 					anOrderItem.setRequestQuantity(rs.getInt(6));
 					anOrderItem.setShippingStatus(rs.getInt(7));
 					anOrderItem.setStatus(rs.getInt(9));
-					
+					anOrderItem.setSubTotal(rs.getInt(10));
 					//System.out.println(anOrderItem.getProductId());
 					orderItemsList.add(anOrderItem);
 					
@@ -67,6 +67,30 @@ public class OrderItemsDB {
 		    
 		    return orderItemsList;
 		}
+	
+	public int returnItemsCancelStatusByIdDAO(int id){
+		
+		String SQL = "SELECT Status from OrderItems WHERE Id = ?";
+		int status = 0;
+	    try {
+			ps = conn.prepareStatement(SQL);
+			ps.setInt(1, id);
+		    
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				status = rs.getInt("Status");
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	   
+		
+	    
+	    return status;
+	}
 	
 	public void chanegItemStatusToCancelDAO(int itemsId)  {
 		String SQL = "UPDATE OrderItems SET Status = 1 WHERE Id = ? ";
@@ -95,15 +119,17 @@ public class OrderItemsDB {
 				  int shippingStatus = anOrderItems.getShippingStatus();
 				  int shippingRefNo = anOrderItems.getShippingRefNo();
 				  int status = anOrderItems.getStatus();
+				  int subTotal = anOrderItems.getSubTotal();
 				  
 
-				  sql = "INSERT INTO OrderItems (OrderId, ProductId, Quantity, ShippingStatus, ShippingRefNo, Status)" +
+				  sql = "INSERT INTO OrderItems (OrderId, ProductId, Quantity, ShippingStatus, ShippingRefNo, Status, SubTotal)" +
 				          "VALUES ('" + orderId +
 						  "', '" + productId + 
 						  "', '" + quantity + 
 						  "', '" + shippingStatus + 
 						  "', '" + shippingRefNo + 
-						  "', '" + status + "')";
+						  "', '" + status + 
+						  "', '" + subTotal + "')";
 				  
 				  stmt.executeUpdate(sql);
 				  

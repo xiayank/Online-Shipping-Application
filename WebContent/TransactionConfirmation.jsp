@@ -401,21 +401,12 @@ hr{
     </ul>
   </div>
 </nav>
-		<c:set var="guess" value="<c:out value="${validCard}" />"/>
-		<c:choose>
-		  <c:when test="${validCard  == 0}">
-		    0
-		  </c:when>
-		  <c:when test="${guess == 1}">
-		    1
-		  </c:when>
-		  <c:otherwise>
-		    2
-		  </c:otherwise>
-		</c:choose> 
 		
-    <h1 class="container text-center">Your order has been placed</h1>
-    <!--shopping list-->
+		<c:choose>
+		<%-- instead of using ${${parameter}==0}, use &{parameter == 0} directly use the name of parameter to compare in condition--%>
+		  <c:when test="${validCard  == 0}">
+		   <h1 class="container text-center">Your order has been placed</h1>
+		   <!--shopping list-->
     <div class="container">
 	<table id="cart" class="table table-hover table-condensed">
     				<thead>
@@ -517,6 +508,17 @@ hr{
                                                            
                         </div>
                         </div>
+		  </c:when>
+		  <c:when test="${validCard == 1}">
+		   <h1 class="container text-center">Order Failed! <br>Your credit card has no sufficient fund</h1>
+		  </c:when>
+		  <c:otherwise>
+		    <h1 class="container text-center">Order Failed! <br>Your credit card is invalid</h1>
+		  </c:otherwise>
+		</c:choose> 
+		
+    
+    
     <!--payment-->
     
                                

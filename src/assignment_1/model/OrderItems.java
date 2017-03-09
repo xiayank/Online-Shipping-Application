@@ -138,6 +138,19 @@ public class OrderItems {
 		db.closeConnection();
 	}
 	
-	
+	public boolean returnItemsCancelStatusById(int itemsId){
+		OrderItemsDB db = new OrderItemsDB();
+		db.connectMeIn();
+		int status = db.returnItemsCancelStatusByIdDAO(itemsId);
+		if(status == 0){
+			db.closeConnection();
+			return false;//ordered
+		}else{
+			db.closeConnection();
+			return true; // canceled
+		}
+		
+		
+	}
 	
 }

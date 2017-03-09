@@ -395,6 +395,7 @@ hr{
       </li>    
     </ul>
     <ul class="nav navbar-nav navbar-right">
+    <li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
        <li><a href="ViewOrders"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
       <li><a href="ShoppingCart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
       <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>

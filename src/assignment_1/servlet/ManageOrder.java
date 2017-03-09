@@ -40,23 +40,41 @@ public class ManageOrder extends HttpServlet {
 		
 		
 		ArrayList<OrderItems> orderItemsList = anOrderItems.returnOrderItemsByOrderId(orderId);
+		ArrayList<OrderItems>canceledItems = new ArrayList<>();
 		
 		//calculate subtotal cost
 		for(OrderItems orderItems: orderItemsList){
+			/*
 			Products aProducts = new Products();
 			aProducts = aProducts.returnProductsByID(orderItems.getProductId());
 
 			
-//			System.out.println(orderItems.getProductId());
-			//set item with product id
-			orderItems.setProducts(aProducts);
-			//set subtatol
 
+			
+			//set product into item
+			orderItems.setProducts(aProducts);
+			
+			//set subtatol into item
 			int subTotal = orderItems.getRequestQuantity() * aProducts.getPrice(); 
 			orderItems.setSubTotal(subTotal);
+			
+			*/
+			//check the cancel status
+			// true -> canceled -> not show 
+			
+			if(orderItems.returnItemsCancelStatusById(orderItems.getId())){
+				
+				canceledItems.add(orderItems);
+				
+			}
+			
+			
+			
 		}
 		
-
+		for(OrderItems aCanceledItems: canceledItems){
+			orderItemsList.remove(aCanceledItems);
+		}
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("orderItemsList", orderItemsList);

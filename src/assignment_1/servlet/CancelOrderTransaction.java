@@ -48,8 +48,8 @@ public class CancelOrderTransaction extends HttpServlet {
 		int balance = anTransactions.returnBalanceByCardNumber(refundCardNumber);
 		int newBalance = refund + balance;
 		System.out.println(refund);
-		System.out.println(balance);
-		System.out.println(newBalance);
+		//System.out.println(balance);
+		//System.out.println(newBalance);
 		anTransactions.updateBalance(refundCardNumber, newBalance);
 		
 		//3.put back canceled quantity
@@ -63,7 +63,7 @@ public class CancelOrderTransaction extends HttpServlet {
 		
 		
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ManageOrders.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewOrders.jsp");
 		dispatcher.forward(request, response);
 		
 	}

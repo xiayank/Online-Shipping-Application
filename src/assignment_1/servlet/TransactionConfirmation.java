@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import assignment_1.model.OrderItems;
 import assignment_1.model.Orders;
+import assignment_1.model.Products;
 import assignment_1.model.ShoppingCartBean;
 import assignment_1.model.Transactions;
 import assignment_1.model.Users;
@@ -82,10 +83,6 @@ public class TransactionConfirmation extends HttpServlet {
 				//add current order into database
 				anOrder.addOrder(anOrder);
 
-				//System.out.println(activeUser.getID());
-
-				//System.out.println(activeUser.getUserId());
-
 				//after add into database, then get the primary key Id from database
 				Orders currentOrder = new Orders();
 				currentOrder = currentOrder.returnOrderByOrderNumber(anOrder.getOrderNumber());
@@ -98,6 +95,17 @@ public class TransactionConfirmation extends HttpServlet {
 					anOrderItems.setOrderId(currentOrder.getId()); // the FOREIGN KEY of OrderItems is OrderId
 					anOrderItems.setProductId(aShoppingCartBean.getaProduct().getID());
 					anOrderItems.setRequestQuantity(aShoppingCartBean.getRequestQuantity());
+					
+					Products aProducts = new Products();
+					aProducts = aProducts.returnProductsByID(aShoppingCartBean.getaProduct().getID());
+					//set product into item
+					anOrderItems.setProducts(aProducts);
+					
+					//set subtatol into item
+					int subTotal = anOrderItems.getRequestQuantity() * aProducts.getPrice(); 
+					anOrderItems.setSubTotal(subTotal);
+					
+					
 //					anOrderItems.setShippingRefNo(1);
 //					anOrderItems.setShippingStatus(1);
 //					anOrderItems.setStatus(1);
@@ -125,23 +133,7 @@ public class TransactionConfirmation extends HttpServlet {
 			validCard = 2; //invalid card, show error !
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		session.setAttribute("firstName", firstName);
 		session.setAttribute("lastName", lastName);
 		session.setAttribute("city", city);
@@ -151,6 +143,7 @@ public class TransactionConfirmation extends HttpServlet {
 		session.setAttribute("fullAddress", fullAddress);
 		session.setAttribute("validCard", validCard);
 		
+		session.removeAttribute("shoppingCartList");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("TransactionConfirmation.jsp");
 		//System.out.println(aProduct.getProductDescription());
 		dispatcher.forward(request, response);
