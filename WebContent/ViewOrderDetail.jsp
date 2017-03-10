@@ -1,185 +1,190 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+          <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>View Order Detail</title>
+  <title>Manage Orders</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
+     .container {
+      padding: 80px 10px;
+  }
+/*
+ * BOOTSTRAP
+ */
+.container{
+    border: none;
+}
+.panel-footer{
+    background:#fff;
+}
+.btn{
+    border-radius: 1px;
+}
+.btn-sm, .btn-group-sm > .btn{
+    border-radius: 1px;
+}
+.input-sm, .form-horizontal .form-group-sm .form-control{
+    border-radius: 1px;
+}
 
+.panel-info {
+    border-color: #999;
+}
+
+.panel-heading {
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+}
+.panel {
+    border-radius: 1px;
+}
+.panel-info > .panel-heading {
+    color: #eee;
+    border-color: #999;
+}
+.panel-info > .panel-heading {
+    background-image: linear-gradient(to bottom, #555 0px, #888 100%);
+}
+
+hr {
+    border-color: #999 -moz-use-text-color -moz-use-text-color;
+}
+
+.panel-footer {
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    border-top: 1px solid #999;
+}
+
+.btn-link {
+    color: #888;
+}
+
+hr{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
   </style>    
+
     
-												    
 </head>
 <body>
-<%
-String name = request.getParameter("name");
-String date = request.getParameter("date");
-String number = request.getParameter("number");
-if(name == null || name == "" || date == null || date == "" || number == null || number == ""){
-	name = "UPS";
-	date = "1/23/2017";
-	number = "6291236382";
-}
-%>
-
-
-
 <!-- navbar-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">View Order Detail</a>
+      <a class="navbar-brand" href="#">SHOPPING YOU WANT!</a>
     </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">New Arrive</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MEN<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">WOMEN<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">KIDS<span class="caret"></span></a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">SHOES</a></li>
+          <li><a href="#">TOP</a></li>
+          <li><a href="#">BOTTOM</a></li>
+          <li><a href="#">ACCESSORIES</a></li>
+        </ul>
+      </li>    
+    </ul>
     <ul class="nav navbar-nav navbar-right">
-	 <li><a href="ManageProducts.jsp"><span class="glyphicon glyphicon-user"></span> Manage Products</a></li>
-	  <li><a href="ViewCurrentOrders.jsp"><span class="glyphicon glyphicon-user"></span> View Current Order</a></li>
-      <li><a href="SellerHomePage.jsp"><span class="glyphicon glyphicon-user"></span> Home Page</a></li>
+      <li><a href="Home.jsp"><span class="glyphicon glyphicon-user"></span> Home </a></li>
+      <li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
+        <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
       <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
 </nav>
-<div class="container">
-<div class="row">
-	 <br>
-            <div class="col-md-12">
-                <div class="col-md-5 col-sm-7 col-xs-13 col-md-push-7 col-sm-push-7">
-                    <!--REVIEW ORDER-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
-                            <h4>order information</h4>
-                        </div>
-                        <div class="panel-body">
-						 <div class="col-md-12">
-                                    <strong>Order Number</strong>
-                                    <div class="pull-right"><span>124348212</span></div>
-                                    <hr>
-                                </div>
-                                <div class="col-md-12">
-                                    <strong>Order total (# item)</strong>
-                                    <div class="pull-right"><span>$</span><span>32.97</span></div>
-                                </div>
-                                <div class="col-md-12">
-                                    <strong>Tax</strong>
-                                    <div class="pull-right"><span>$</span><span>2.03</span></div>
-                                </div>
-								<div class="col-md-12">
-                                    <strong>total price</strong>
-                                    <div class="pull-right"><span>$</span><span>35.00</span></div>
-                                </div>
+<!--results -->
 
-                                <div class="col-md-12">
-                                    <small>order status</small>
-                                    <div class="pull-right"><span>Shipping</span></div>
-                                    <hr>
-                                </div>
-								<div class="col-md-12">
-                                    <strong>Order Date</strong>
-                                   
-                                    <div class="pull-right"><span></span><span>1/1/2017</span></div><br/>
-                                    </div>
-								<div class="col-md-12">
-                                    <strong>Shipment Date</strong>
-                                    <div class="pull-right"><span></span><span><%= date %></span></div><br/>
-								</div>
-								<div class="col-md-12">
-                                    <strong>Carrier name</strong>
-                                    <div class="pull-right"><span></span><span><%= name %></span></div><br/>
-								</div>
-								<div class="col-md-12">
-                                    <strong>Tracking number</strong>
-                                    <div class="pull-right"><span></span><span><%= number %></span></div><br/>
-								</div>
-                                  
-                                
-                                
-                                
-                                     
-                                
-                                
-								<div class="col-md-12">
-								 <hr>
-                                    <strong>Costumer Name</strong>
-                                    <div class="pull-right"><span></span><span>David James</span></div><br/>
+    <div class="text-center">
+  <h2>Order Detail of Order number: ${ordernumber}</h2>
+  
+  <br>
+      <!--shopping list-->
+    <div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:8%">Images</th>
+                            <th style="width:8%">Product Name</th>
+							<th style="width:8%">Price</th>
+							<th style="width:8%">Quantity</th>
+                            <th style="width:8%">Estimated delivery date</th>
+							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%">Check to Cancel</th>
+						</tr>
+					</thead>
+					
+					
+					<c:forEach var="anOrderItem" items="${orderdetail}">
+					<tbody>
+					
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<img src= ${anOrderItem.products.productThumbnail} alt="..." class="img-responsive"/></div>
+									
+							
+							</td>
+                            <td data-th="ProductName"> ${anOrderItem.products.productName }</td>
+							<td data-th="Price">${anOrderItem.products.price }$ </td>
+							<td data-th="Quantity">${anOrderItem.requestQuantity }</td>
+                            <td data-th="date" class="text-center">1/1/2017</td>
+							<td data-th="Subtotal" class="text-center">${anOrderItem.subTotal}</td>
+							
 								
-                                    <hr>
-                                </div>
-                                <div class="col-md-12">
-                                    <strong>Billing Address</strong><br/>
-                                    <div class="pull-left"><span>$</span><span>123 ST, Lincoln NE 68588</span></div><br/>
-									<strong>Shipping Address</strong><br/>
-									<div class="pull-left"><span>$</span><span>123 ST, Lincoln NE 68588</span></div>
-                                    <hr>
-                                </div>
-                                <a href="UpdateOrderStatus.jsp">
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Update Order Status</button>
-                                </a>
-                        </div>
-                        
-                    </div>
-                    <!--REVIEW ORDER END-->
-                </div>
-                <div class="col-md-7 col-sm-5 col-xs-11 col-md-pull-5 col-sm-pull-5">
-                    <!--SHIPPING METHOD-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center"><h4>items in the order</h4></div>
-                        <div class="panel-body">
-                           <table class="table borderless">
-    						<thead>
-                               
-    						</thead>
-    						<tbody>
-    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-    							<tr>
-    								<td class="col-md-3">
-    								    <div class="media">
-    								         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="Pics/adidas.jpg" style="width: 72px; height: 72px;"> </a>
-    								         <div class="media-body">
-    								             <h5 class="media-heading"> Product Name</h5>
-    								             <h5 class="media-heading"> Product Code</h5>
-												 <h5 class="media-heading"> Shipping status</h5>
-    								         </div>
-    								    </div>
-    								</td>
-    								<td class="text-center">$10.99</td>
-    								<td class="text-center">2</td>
-    								<td class="text-right">$21.98</td>
-    								<td class="text-right"><a href="ProductDetail.jsp"><button type="button" class="btn btn-danger">View</button></a>
-    								<br/><br/><a href="SellerCancelOrder.jsp"><button type="button" class="btn btn-danger">cancel</button></a></td>
-    							</tr>
-                                <tr>
-    								<td class="col-md-3">
-    								    <div class="media">
-    								         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="Pics/adidas.jpg" style="width: 72px; height: 72px;"> </a>
-    								         <div class="media-body">
-    								             <h5 class="media-heading"> Product Name</h5>
-    								             <h5 class="media-heading"> Product Code</h5>
-												 <h5 class="media-heading"> Shipping status</h5>
-    								         </div>
-    								    </div>
-    								</td>
-    								<td class="text-center">$10.99</td>
-    								<td class="text-center">1</td>
-    								<td class="text-right"> $10.99</td>
-    								<td class="text-right"><a href="ProductDetail.jsp"><button type="button" class="btn btn-danger">View</button></a>
-    								<br/><br/><a href="SellerCancelOrder.jsp"><button type="button" class="btn btn-danger">cancel</button></a></td>
+								<form action = "CancelOrder" method = "post"  />
+						        <input type="hidden" name="orderItemId" value="<c:out value="${anOrderItem.id}" />">
+						        <td> <button type="submit" class="btn btn-danger btn-sm">Delete</button>   </td>
+						        </form>
 								
-    							</tr>
-    						</tbody>
-    					</table> 
-                        </div>
-                    </div>
-                    <!--SHIPPING METHOD END-->
-                </div>
-                </div>
-                </div>
+								
+								
+<!-- 							<button class="btn btn-danger btn-sm">Delete<i class="fa fa-trash-o"></i></button>						
+                                <form>
+                            <div class="checkbox">
+                            <label><input type="checkbox" value=""></label>
+                                 </div>
+                                </form> -->
+							
+						</tr>
+						
+						
+					</tbody>
+        </c:forEach>
+					<tfoot>
+                     
+
+					</tfoot>
+				</table>
 </div>
-           
-             
- 
+   
+    
+    
 </body>
 </html>

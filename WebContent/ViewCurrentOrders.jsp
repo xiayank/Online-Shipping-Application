@@ -95,7 +95,7 @@
         <td>1/1/2017</td>
         <td>${anOrder.shippingAddress}</td>
 
-        <form action = "ViewCurrentOrder" method = "post"  />
+        <form action = "ViewOrderDetails" method = "post"  />
         <input type="hidden" name="orderId" value="<c:out value="${anOrder.id}" />">
         <input type="hidden" name="orderNumber" value="<c:out value="${anOrder.orderNumber}" />">
         <td> <button type="submit" class="btn btn-success">View</button>   </td>
