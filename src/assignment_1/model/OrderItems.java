@@ -17,6 +17,7 @@ public class OrderItems {
 	int shippingRefNo;
 	int status;
 	int subTotal;
+	int sellerId;
 	Products products;
 	
 	
@@ -49,6 +50,12 @@ public class OrderItems {
 	}
 	public void setProductId(int productId) {
 		this.productId = productId;
+	}
+	public int getSellerId(){
+		return sellerId;
+	}
+	public void setSellerId(int sellerId){
+		this.sellerId = sellerId;
 	}
 	public int getRequestQuantity() {
 		return requestQuantity;
@@ -111,6 +118,25 @@ public class OrderItems {
 		return null;
 		
 	}
+	public ArrayList<OrderItems>returnOrderItemsBySellerId(int sellerId){
+		OrderItemsDB db = new OrderItemsDB();
+		db.connectMeIn();
+		ArrayList<OrderItems> allOrderItems = new ArrayList<OrderItems>();
+		ArrayList<OrderItems> currentOrderItems = new ArrayList<OrderItems>();
+		allOrderItems = db.returnAllOrderItemsDAO();
+		for(OrderItems anOrderItems:allOrderItems){
+			if(anOrderItems.sellerId == sellerId){
+				currentOrderItems.add(anOrderItems);
+				
+				
+			}
+		}
+		
+		
+		db.closeConnection();
+		return currentOrderItems;
+		
+	}
 	
 	public ArrayList<OrderItems>returnOrderItemsByOrderId(int orderId){
 		OrderItemsDB db = new OrderItemsDB();
@@ -137,6 +163,7 @@ public class OrderItems {
 		db.chanegItemStatusToCancelDAO(itemsId);
 		db.closeConnection();
 	}
+	
 	
 	public boolean returnItemsCancelStatusById(int itemsId){
 		OrderItemsDB db = new OrderItemsDB();

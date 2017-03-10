@@ -107,11 +107,11 @@
    
         
          <!-- use a hidden input tag to store the ID and submit it to servlet when corresponding button been clicked -->
-        <form action = "EditProductDetail" method = "post"  />
+       
+        <form action = "EditProductDetail" method = "post">
         <input type="hidden" name="ID" value="<c:out value="${productResultBean.ID}" />">
         <td> <button type="submit" class="btn btn-success">Edit Product</button>   </td>
         </form>
-        
       </tr>
     
     </c:forEach>

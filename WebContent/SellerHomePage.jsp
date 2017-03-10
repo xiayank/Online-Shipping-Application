@@ -35,9 +35,9 @@
     </div>
    
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="ViewCurrentOrders.jsp"><span class="glyphicon glyphicon-user"></span> View Current Order</a></li>
+      <li><a href="ViewCurrentOrder"><span class="glyphicon glyphicon-user"></span> View Current Order</a></li>
 	  <li><a href="ManageProducts"><span class="glyphicon glyphicon-user"></span> Manage Products</a></li>
-      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+      <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
 </nav>

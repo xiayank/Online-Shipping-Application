@@ -45,6 +45,7 @@ public class OrderItemsDB {
 					anOrderItem.setId(rs.getInt(1));
 					anOrderItem.setOrderId(rs.getInt(2));
 					anOrderItem.setProductId(rs.getInt(4));
+					anOrderItem.setSellerId(rs.getInt(3));
 					anOrderItem.setRequestQuantity(rs.getInt(6));
 					anOrderItem.setShippingStatus(rs.getInt(7));
 					anOrderItem.setStatus(rs.getInt(9));
