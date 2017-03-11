@@ -107,7 +107,25 @@ public class OrderItemsDB {
 		}
 		
 	}
+	public void updateOrderStatusDAO(OrderItems anOrder) {
+		int shippingstatus = anOrder.getShippingStatus();
+		int quantity = anOrder.getRequestQuantity();
+		int id = anOrder.getId();
+		String SQL = "UPDATE OrderItems SET ShippingStatus = ?, Quantity = ? WHERE Id = ? ";
+	    try {
+			ps = conn.prepareStatement(SQL);
+			ps.setInt(1, shippingstatus);
+		    ps.setInt(2, quantity);
+		    ps.setInt(3, id);
+		    ps.executeUpdate();
+		    
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	
+	}
 	
 	public void addOrderItemsDAO(OrderItems anOrderItems)  {
 			

@@ -164,6 +164,12 @@ public class OrderItems {
 		db.closeConnection();
 	}
 	
+	public void updateOrderStatus(OrderItems anOrder){
+		OrderItemsDB db = new OrderItemsDB();
+		db.connectMeIn();
+		db.updateOrderStatusDAO(anOrder);
+		db.closeConnection();
+	}
 	
 	public boolean returnItemsCancelStatusById(int itemsId){
 		OrderItemsDB db = new OrderItemsDB();

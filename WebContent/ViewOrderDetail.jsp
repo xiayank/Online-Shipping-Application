@@ -112,10 +112,10 @@ hr{
       </li>    
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="Home.jsp"><span class="glyphicon glyphicon-user"></span> Home </a></li>
+      <li><a href="SellerHomePage.jsp"><span class="glyphicon glyphicon-user"></span> Home </a></li>
       <li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
-        <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
-      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+        <li><a href="ViewCurrentOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
+      <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
 </nav>
@@ -158,11 +158,15 @@ hr{
 							<td data-th="Subtotal" class="text-center">${anOrderItem.subTotal}</td>
 							
 								
-								<form action = "CancelOrder" method = "post"  />
+								<form action = "SellerCancelOrder" method = "post"  />
 						        <input type="hidden" name="orderItemId" value="<c:out value="${anOrderItem.id}" />">
-						        <td> <button type="submit" class="btn btn-danger btn-sm">Delete</button>   </td>
+						        <td> <button type="submit" class="btn btn-danger btn-sm">Cancel</button>   </td>
 						        </form>
-								
+						        
+								<form action = "UpdateOrderStatus" method = "post"  />
+						        <input type="hidden" name="orderItemId" value="<c:out value="${anOrderItem.id}" />">
+						        <td> <button type="submit" class="btn btn-danger btn-sm">Update</button>   </td>
+						        </form>
 								
 								
 <!-- 							<button class="btn btn-danger btn-sm">Delete<i class="fa fa-trash-o"></i></button>						

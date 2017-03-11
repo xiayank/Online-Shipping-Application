@@ -51,7 +51,7 @@ public class ViewCurrentOrder extends HttpServlet {
 			anOrderList.add(anOrder);
 		}
 		//System.out.println("Orderlist: " + anOrderList);
-		request.setAttribute("currentOrdersOfSeller", anOrderList);	
+		session.setAttribute("currentOrdersOfSeller", anOrderList);	
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCurrentOrders.jsp");
 		dispatcher.forward(request, response);
