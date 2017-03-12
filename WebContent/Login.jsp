@@ -22,29 +22,7 @@
 </head>
 <body>
 
-<%!
-	String uName;
 
-%>
-
-<%
-	Cookie cookieList[] = request.getCookies();
-	if(cookieList != null) {
-		for (int i = 0; i < cookieList.length; i++) {
-			Cookie c = cookieList[i];
-			if(c.getName().equals("rememberCookie")) {
-				uName = c.getValue();
-			}
-	
-			
-		}
-	}
-	
-
-	if(uName == null || uName.trim().equals(""))
-		uName ="";
-
-%>
 
 
   <!-- Modal -->
@@ -60,7 +38,7 @@
           <form role="form" method = "post" action = "Login">
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" name="userName" value=<%=uName %>>
+              <input type="text" class="form-control" name="userName" value="${cookie.rememberCookie.value}">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
