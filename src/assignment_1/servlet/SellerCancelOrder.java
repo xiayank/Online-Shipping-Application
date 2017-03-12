@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import assignment_1.model.OrderItems;
 import assignment_1.model.Products;
@@ -42,10 +43,10 @@ public class SellerCancelOrder extends HttpServlet {
 		anOrderItem.setProducts(aProducts);
 		
 		//set subtatol
-
+		HttpSession session = request.getSession();
 		int subTotal = anOrderItem.getRequestQuantity() * aProducts.getPrice(); 
 		anOrderItem.setSubTotal(subTotal);
-		request.setAttribute("anOrderItem", anOrderItem);
+		session.setAttribute("anOrderItem", anOrderItem);
 		
 		
 		

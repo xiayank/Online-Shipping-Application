@@ -89,9 +89,9 @@
       </li>    
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="Home.jsp"><span class="glyphicon glyphicon-user"></span> Home </a></li>
-        <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
-      <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+      <li><a href="SellerHomePage.jsp"><span class="glyphicon glyphicon-user"></span> Seller Home Page</a></li>
+        <li><a href="ViewCurrentOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
+      <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
 </nav>
@@ -146,7 +146,7 @@
 						        </form>
 						        
 							
-                            <td><a href="ManageOrders.jsp" class="btn btn-success btn-block">Discard Cancellation <i class="fa fa-angle-right"></i></a></td>
+                            <td><a href="ViewCurrentOrders.jsp" class="btn btn-success btn-block">Discard Cancellation <i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
 				</table>

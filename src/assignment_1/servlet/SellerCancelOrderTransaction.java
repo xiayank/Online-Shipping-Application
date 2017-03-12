@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import assignment_1.model.OrderItems;
 import assignment_1.model.Orders;
@@ -47,7 +48,7 @@ public class SellerCancelOrderTransaction extends HttpServlet {
 		Transactions anTransactions = new Transactions(); 
 		int balance = anTransactions.returnBalanceByCardNumber(refundCardNumber);
 		int newBalance = refund + balance;
-		System.out.println(refund);
+		//System.out.println(refund);
 		//System.out.println(balance);
 		//System.out.println(newBalance);
 		anTransactions.updateBalance(refundCardNumber, newBalance);
@@ -60,10 +61,10 @@ public class SellerCancelOrderTransaction extends HttpServlet {
 		int newQuantity = refundQuantity + availableQuantity;
 		
 		aProducts.updateAvailableQuantityDAO(anOrderItems.getProductId(), newQuantity);
+		HttpSession session = request.getSession();
+		session.getAttribute("anOrderItem");
 		
-		
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCurrentOrders.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("SellerCancellationConfirmation.jsp");
 		dispatcher.forward(request, response);
 		
 	}
