@@ -9,6 +9,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,17 +43,21 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("psw");
-		
+		String checkbox = request.getParameter("checkbox");
 		boolean userExists = false;
 		Users aUser = new Users();
 		
 		if((userName!=null) && (!userName.trim().equals(""))&&(password!=null) && (!password.trim().equals(""))){
 			userExists = aUser.validateUser(userName, password);
 			if(userExists){
-				 
+				
 				aUser = aUser.returnUserByUsername(userName);
 				HttpSession session = request.getSession();
 			    session.setAttribute("userBean", aUser);
+			    if(checkbox.contains("remember")){
+					Cookie rememberCookie = new Cookie("rememberCookie", userName);
+				rememberCookie.setMaxAge(3600);
+				response.addCookie(rememberCookie);}
 			    int type = aUser.getType();
 			    	if (type == 1){
 			    		String address = "Home.jsp";

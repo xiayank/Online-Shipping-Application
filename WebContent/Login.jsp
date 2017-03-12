@@ -22,7 +22,29 @@
 </head>
 <body>
 
+<%!
+	String uName;
 
+%>
+
+<%
+	Cookie cookieList[] = request.getCookies();
+	if(cookieList != null) {
+		for (int i = 0; i < cookieList.length; i++) {
+			Cookie c = cookieList[i];
+			if(c.getName().equals("rememberCookie")) {
+				uName = c.getValue();
+			}
+	
+			
+		}
+	}
+	
+
+	if(uName == null || uName.trim().equals(""))
+		uName ="";
+
+%>
 
 
   <!-- Modal -->
@@ -38,14 +60,14 @@
           <form role="form" method = "post" action = "Login">
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" name="userName" placeholder="Enter email">
+              <input type="text" class="form-control" name="userName" value=<%=uName %>>
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
               <input type="text" class="form-control" name="psw" placeholder="Enter password">
             </div>
             <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
+              <label><input type="checkbox" name ="checkbox" value="remember" checked>Remember me</label>
             </div>
               <!-- <button type="submit" class="btn btn-success btn-block">
               <span class="glyphicon glyphicon-off"></span> Login</button> -->
