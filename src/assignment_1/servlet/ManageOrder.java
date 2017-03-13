@@ -43,14 +43,14 @@ public class ManageOrder extends HttpServlet {
 		ArrayList<OrderItems> orderItemsList = anOrderItems.returnOrderItemsByOrderId(orderId);
 		ArrayList<OrderItems>canceledItems = new ArrayList<>();
 		
-		//calculate subtotal cost
+		
 		for(OrderItems orderItems: orderItemsList){
 			
 			Products aProducts = new Products();
 			aProducts = aProducts.returnProductsByID(orderItems.getProductId());
 			ProductsInfo info = new ProductsInfo();
 			String sellerName = info.returnSellerNameByUserID(orderItems.getSellerId());
-			//System.out.println(sellerName);
+			
 			aProducts.setSellerName(sellerName);
 
 			
