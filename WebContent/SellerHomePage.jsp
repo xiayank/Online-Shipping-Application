@@ -21,7 +21,7 @@
 .tg th{font-family:Arial, sans-serif;font-size:16px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 
   </style>    
-    
+  
     
 </head>
 <body>
@@ -35,6 +35,7 @@
     </div>
    
     <ul class="nav navbar-nav navbar-right">
+    <li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
       <li><a href="ViewCurrentOrder"><span class="glyphicon glyphicon-user"></span> View Current Order</a></li>
 	  <li><a href="ManageProducts"><span class="glyphicon glyphicon-user"></span> Manage Products</a></li>
       <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>

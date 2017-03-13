@@ -47,7 +47,7 @@ public class CancelOrderTransaction extends HttpServlet {
 		Transactions anTransactions = new Transactions(); 
 		int balance = anTransactions.returnBalanceByCardNumber(refundCardNumber);
 		int newBalance = refund + balance;
-		System.out.println(refund);
+		//System.out.println(refund);
 		//System.out.println(balance);
 		//System.out.println(newBalance);
 		anTransactions.updateBalance(refundCardNumber, newBalance);

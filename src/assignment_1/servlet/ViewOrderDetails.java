@@ -38,16 +38,22 @@ public class ViewOrderDetails extends HttpServlet {
 		ArrayList<OrderItems> anOrder = new ArrayList<OrderItems>();
 		OrderItems anOrder2 = new OrderItems();
 		anOrder = anOrder2.returnOrderItemsByOrderId(id);
-	
+		ArrayList<OrderItems> anOrdercancelled = new ArrayList<OrderItems>();
 		for (OrderItems anOrder3 : anOrder){
 			Products aProduct = new Products();
 			int productid = anOrder3.getProductId();
 			
 		anOrder3.setProducts(aProduct.returnProductsByID(productid));
+			if(anOrder3.returnItemsCancelStatusById(anOrder3.getId())){
+			
+			anOrdercancelled.add(anOrder3);
 			
 		}
+		}
 		
-		
+		for(OrderItems aCanceledItems: anOrdercancelled){
+			anOrder.remove(aCanceledItems);
+		}
 		
 		//System.out.println("orderid" + anOrder.size());
 		HttpSession session = request.getSession();
