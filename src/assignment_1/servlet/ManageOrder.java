@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import assignment_1.model.OrderItems;
 import assignment_1.model.Products;
+import assignment_1.model.ProductsInfo;
 
 /**
  * Servlet implementation class ManageOrder
@@ -44,21 +45,24 @@ public class ManageOrder extends HttpServlet {
 		
 		//calculate subtotal cost
 		for(OrderItems orderItems: orderItemsList){
-			/*
+			
 			Products aProducts = new Products();
 			aProducts = aProducts.returnProductsByID(orderItems.getProductId());
-
-			
+			ProductsInfo info = new ProductsInfo();
+			String sellerName = info.returnSellerNameByUserID(orderItems.getSellerId());
+			//System.out.println(sellerName);
+			aProducts.setSellerName(sellerName);
 
 			
 			//set product into item
 			orderItems.setProducts(aProducts);
-			
+			/*
 			//set subtatol into item
 			int subTotal = orderItems.getRequestQuantity() * aProducts.getPrice(); 
 			orderItems.setSubTotal(subTotal);
 			
 			*/
+			
 			//check the cancel status
 			// true -> canceled -> not show 
 			

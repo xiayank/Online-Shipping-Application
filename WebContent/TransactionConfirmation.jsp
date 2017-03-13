@@ -420,7 +420,7 @@ hr{
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var = "aShoppingCarProduct" items = "${shoppingCartList}">
+						<c:forEach var = "aShoppingCarProduct" items = "${showOrderDetail}">
 						<tr>
 							<td data-th="Product">
 								<div class="row">

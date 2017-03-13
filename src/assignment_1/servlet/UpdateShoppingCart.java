@@ -107,6 +107,7 @@ public class UpdateShoppingCart extends HttpServlet {
 		session.setAttribute("totalCost", sum);
 		
 		session.setAttribute("shoppingCartList", shoppingCartList);
+		session.setAttribute("showOrderDetail", shoppingCartList);
 		//System.out.println(quantity);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ShoppingCart.jsp");
 		dispatcher.forward(request, response);

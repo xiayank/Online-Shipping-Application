@@ -139,11 +139,12 @@ public class OrderItemsDB {
 				  int shippingRefNo = anOrderItems.getShippingRefNo();
 				  int status = anOrderItems.getStatus();
 				  int subTotal = anOrderItems.getSubTotal();
-				  
+				  int sellerId = anOrderItems.getSellerId();
 
-				  sql = "INSERT INTO OrderItems (OrderId, ProductId, Quantity, ShippingStatus, ShippingRefNo, Status, SubTotal)" +
+				  sql = "INSERT INTO OrderItems (OrderId, ProductId, SellerId,Quantity, ShippingStatus, ShippingRefNo, Status, SubTotal)" +
 				          "VALUES ('" + orderId +
 						  "', '" + productId + 
+						   "', '" + sellerId + 
 						  "', '" + quantity + 
 						  "', '" + shippingStatus + 
 						  "', '" + shippingRefNo + 

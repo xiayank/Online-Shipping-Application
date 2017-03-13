@@ -95,7 +95,7 @@ public class TransactionConfirmation extends HttpServlet {
 					anOrderItems.setOrderId(currentOrder.getId()); // the FOREIGN KEY of OrderItems is OrderId
 					anOrderItems.setProductId(aShoppingCartBean.getaProduct().getID());
 					anOrderItems.setRequestQuantity(aShoppingCartBean.getRequestQuantity());
-					
+					anOrderItems.setSellerId(aShoppingCartBean.getaProduct().getSellerId());
 					Products aProducts = new Products();
 					aProducts = aProducts.returnProductsByID(aShoppingCartBean.getaProduct().getID());
 					//set product into item
