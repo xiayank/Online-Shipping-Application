@@ -94,8 +94,8 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
     <li><a><span class="glyphicon glyphicon-user"></span> Hi ${userBean.userName}</a></li>
-       <li><a href="ViewOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
-      <li><a href="ShoppingCart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+       <li><a href="ViewCurrentOrders.jsp"><span class="glyphicon glyphicon-user"></span> View My Order</a></li>
+      <li><a href="SellerHomePage.jsp"><span class="glyphicon glyphicon-shopping-cart"></span>Selelr Home Page</a></li>
       <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
     </ul>
   </div>
