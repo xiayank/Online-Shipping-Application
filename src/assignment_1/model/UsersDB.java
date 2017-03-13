@@ -38,8 +38,7 @@ public class UsersDB {
 			          "VALUES ('" + Username +
 					  "', '" + Password + 
 					  "', '" + 1 + "')";
-			  ResultSet rs = stmt.executeQuery(sql);
-			  aUser.setID(rs.getInt(1));
+			  
 			  stmt.executeUpdate(sql);
 			  
 			  
@@ -62,8 +61,6 @@ public class UsersDB {
 					  "', '" + Password + 
 					  "', '" + 2 + "')";
 			  
-			  ResultSet rs = stmt.executeQuery(sql);
-			  aUser2.setID(rs.getInt(1));
 			  stmt.executeUpdate(sql);
 			  
 			  
