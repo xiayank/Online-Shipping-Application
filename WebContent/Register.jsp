@@ -39,7 +39,7 @@
               <label for="userName"><span class="glyphicon glyphicon-user">
               </span> userName</label>
               <input type="text" class="form-control" name="userName" 
-              placeholder="Enter gmail address">
+              placeholder="Enter email address">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open">
