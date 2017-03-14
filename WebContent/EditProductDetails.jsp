@@ -107,11 +107,6 @@
 <!--buttons-->
 <div class="container">
 
-<a href="Home.jsp" type="button" class="btn btn-link">Home</a><br>
-
-    
-
-<a href="SearchResult.jsp" type="button" class="btn btn-link">Back to Search</a><br><br>
 
 <div class="row">
   <div class="col-sm-8">

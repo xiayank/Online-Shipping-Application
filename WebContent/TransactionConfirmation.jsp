@@ -442,7 +442,9 @@ hr{
 					<tfoot>
                         
 						<tr>
-							
+							<p class="print-align-right">
+    <h2> <a href="#" onclick="javascript:window.print();" >Print this page</a></h2>
+</p>
 							<td colspan="1" class="hidden-xs"><a href = "ViewOrders"><button class="btn btn-primary btn-submit-fix">View My Orders</button></a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td colspan="3" class="hidden-xs text-center"><h2>Total Cost: ${totalCost}$</h2> </td>

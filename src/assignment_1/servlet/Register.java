@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import assignment_1.model.SendMail;
 import assignment_1.model.Users;
 
 /**
@@ -57,58 +57,13 @@ public class Register extends HttpServlet {
 				aUser.addCustomerUser(aUser);
 				response.sendRedirect("Login.jsp");
 				//send emails
-			
-				 String to = "rogergui2014@hotmail.com";
-				 
-			      // Sender's email ID needs to be mentioned
-			      String from = "renjie.gui@huskers.unl.edu";
-			 
-			      // Assuming you are sending email from localhost
-			      String host = "localhost:8080";
-			 
-			      // Get system properties
-			      Properties properties = System.getProperties();
-			      properties.setProperty("mail.user", "renjie.gui@huskers.unl.edu");
-			      properties.setProperty("mail.password", "19921149GRJQwQw");
-			      // Setup mail server
-			      properties.setProperty("mail.smtp.host", host);
-			 
-			      // Get the default Session object.
-			      Session session = Session.getDefaultInstance(properties);
-			      
-				  // Set response content type
-			      response.setContentType("text/html");
-			      PrintWriter out = response.getWriter();
-
-			      try{
-			         // Create a default MimeMessage object.
-			         MimeMessage message = new MimeMessage(session);
-			         // Set From: header field of the header.
-			         message.setFrom(new InternetAddress(from));
-			         // Set To: header field of the header.
-			         message.addRecipient(Message.RecipientType.TO,
-			                                  new InternetAddress(to));
-			         // Set Subject: header field
-			         message.setSubject("This is the Subject Line!");
-			         // Now set the actual message
-			         message.setText("This is actual message");
-			         // Send message
-			         Transport.send(message);
-			         String title = "Send Email";
-			         String res = "Sent message successfully....";
-			         String docType =
-			         "<!doctype html public \"-//w3c//dtd html 4.0 " +
-			         "transitional//en\">\n";
-			         out.println(docType +
-			         "<html>\n" +
-			         "<head><title>" + title + "</title></head>\n" +
-			         "<body bgcolor=\"#f0f0f0\">\n" +
-			         "<h1 align=\"center\">" + title + "</h1>\n" +
-			         "<p align=\"center\">" + res + "</p>\n" +
-			         "</body></html>");
-			      }catch (MessagingException mex) {
-			         mex.printStackTrace();
-			      }
+				String to = userName;
+		        String subject = "Register Successfully";
+		        String message =  "Congratulation! You have registered successfully!";
+		        String user = "rogergui2014@gmail.com";
+		        String pass = "19921149GRJQwQw";
+		      
+		        SendMail.send(to,subject, message, user, pass);
 			   
 			}else{
 				//show a page to notice user that such username is no exist
@@ -127,57 +82,14 @@ public class Register extends HttpServlet {
 				aUser2.addSellerUser(aUser2);
 				response.sendRedirect("Login.jsp");
 				//sending emails
-				String to = "rogergui2014@hotmail.com";
-				 
-			      // Sender's email ID needs to be mentioned
-			      String from = "renjie.gui@huskers.unl.edu";
-			 
-			      // Assuming you are sending email from localhost
-			      String host = "8080";
-			 
-			      // Get system properties
-			      Properties properties = System.getProperties();
-			 
-			      // Setup mail server
-			      properties.setProperty("mail.smtp.host", host);
-			      properties.setProperty("mail.user", "renjie.gui@huskers.unl.edu");
-			      properties.setProperty("mail.password", "19921149GRJQwQw");
-			      // Get the default Session object.
-			      Session session = Session.getDefaultInstance(properties);
+				String to = userName;
+		        String subject = "Register Successfully";
+		        String message =  "Congratulation! You have registered successfully!";
+		        String user = "rogergui2014@gmail.com";
+		        String pass = "19921149GRJQwQw";
+		      
+		        SendMail.send(to,subject, message, user, pass);
 			      
-				  // Set response content type
-			      response.setContentType("text/html");
-			      PrintWriter out = response.getWriter();
-
-			      try{
-			         // Create a default MimeMessage object.
-			         MimeMessage message = new MimeMessage(session);
-			         // Set From: header field of the header.
-			         message.setFrom(new InternetAddress(from));
-			         // Set To: header field of the header.
-			         message.addRecipient(Message.RecipientType.TO,
-			                                  new InternetAddress(to));
-			         // Set Subject: header field
-			         message.setSubject("This is the Subject Line!");
-			         // Now set the actual message
-			         message.setText("This is actual message");
-			         // Send message
-			         Transport.send(message);
-			         String title = "Send Email";
-			         String res = "Sent message successfully....";
-			         String docType =
-			         "<!doctype html public \"-//w3c//dtd html 4.0 " +
-			         "transitional//en\">\n";
-			         out.println(docType +
-			         "<html>\n" +
-			         "<head><title>" + title + "</title></head>\n" +
-			         "<body bgcolor=\"#f0f0f0\">\n" +
-			         "<h1 align=\"center\">" + title + "</h1>\n" +
-			         "<p align=\"center\">" + res + "</p>\n" +
-			         "</body></html>");
-			      }catch (MessagingException mex) {
-			         mex.printStackTrace();
-			      }
 				
 				
 				
