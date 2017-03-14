@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import javax.servlet.RequestDispatcher;
 import assignment_1.model.Products;
+import assignment_1.model.Users;
 
 
 
@@ -35,13 +37,47 @@ public class ProductsSearch extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		HttpSession session = request.getSession();
-		Products aProduct = new Products();
-		
-				
+		HttpSession session = request.getSession();
+		Users aUser = (Users) session.getAttribute("userBean");
+		String userName = aUser.getUserName();
 		String keyword = request.getParameter("keyword");
+		Products aProduct = new Products();
 		 
 		ArrayList<Products> searchResult = new ArrayList<Products>();
 		searchResult = aProduct.returnProductsByKeyword(keyword);
+		
+		Cookie cookieList[] = request.getCookies();
+		String ads = null;
+		
+		
+		if(cookieList != null) {
+			for (int i = 0; i < cookieList.length; i++) {
+				Cookie aCookie = cookieList[i];
+				String query = null;
+				if(aCookie.getName().equals(userName)){
+					 query = aCookie.getValue();
+					 if(query.toUpperCase().contains("NIKE")){
+						 ads = "Pics/nike.jpg";
+					 }else if(query.toUpperCase().contains("AD")){
+						 ads = "Pics/adidas.jpg";
+					 }
+					 Cookie c = new Cookie("ads", ads);
+					 response.addCookie(c);
+					 
+				}else{
+					Cookie c = new Cookie(userName, keyword);
+					 response.addCookie(c);
+					 //System.out.println(keyword);
+				}
+				
+				
+			}
+		}
+		
+		
+		
+		
+		
 		
 		//print results name
 //		for(Products a : searchResult){

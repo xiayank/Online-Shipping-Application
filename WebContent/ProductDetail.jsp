@@ -125,7 +125,7 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src=${selectedProduct.productThumbnail}  alt="Image">
+          <img src= ${selectedProduct.productThumbnail}  alt="Image">
           <div class="carousel-caption">
             <h3>${selectedProduct.productName }</h3>
 
