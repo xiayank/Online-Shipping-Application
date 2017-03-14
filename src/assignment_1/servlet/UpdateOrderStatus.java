@@ -57,8 +57,7 @@ public class UpdateOrderStatus extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		else if(refer.contains("UpdateOrderStatus")){
-		String name = request.getParameter("name");
-		int price = Integer.parseInt(request.getParameter("price"));
+	
 		int quantity =Integer.parseInt(request.getParameter("quantity"));
 		String date = request.getParameter("date");
 		

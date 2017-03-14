@@ -56,7 +56,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">SHOPPING YOU WANT!</a>
+      <a class="navbar-brand" href="#">Update Order Status</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">New Arrive</a></li>
@@ -144,11 +144,14 @@
   <div class="col-sm-4">
   <form action = "UpdateOrderStatus" method = "post">
   
-    <h4>Product Name: ${anOrderItem.products.productName }</h4><input name = "name" type="text"><br>
-    <h4>Price:<code> ${anOrderItem.products.price }$</code><input name = "price" type="number" class=" text-center"></h4>
-    <h4>Quantity: <code>${anOrderItem.requestQuantity }</code><input name = "quantity" type="number" class=" text-center"></h4>
+    <h4>Product Name: ${anOrderItem.products.productName}</h4><br>
+   
+    <h4>Quantity: <code>${anOrderItem.requestQuantity}</code><input name = "quantity" type="number" class=" text-center"></h4>
    <h4>Date:<code>1/1/2017</code><input name = "date" type="text" class=" text-center"></h4>
-   <h4>shipping status: <code>${anOrderItem.shippingStatus }</code><input name = "shippingStatus" type="number" class=" text-center"></h4>
+   <h4>shipping status(0 as not shipped; 1 as shipped): <code>${anOrderItem.shippingStatus}</code><select name="shippingStatus">
+    					<option value="0">0</option>
+ 						 <option value="1">1</option>
+						</select></h4>
    
 							
     

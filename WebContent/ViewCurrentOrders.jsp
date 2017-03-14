@@ -23,7 +23,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">SHOPPING YOU WANT!</a>
+      <a class="navbar-brand" href="#">View Current Orders</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">New Arrive</a></li>

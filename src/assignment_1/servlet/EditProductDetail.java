@@ -41,7 +41,7 @@ public class EditProductDetail extends HttpServlet {
 		//System.out.println(aProduct.getProductDescription());
 		dispatcher.forward(request, response);
 		}
-		else {
+		else  if(refer.contains("EditProductDetails")) {
 		String name = request.getParameter("name");
 		int price = Integer.parseInt(request.getParameter("price"));
 		int quantity =Integer.parseInt(request.getParameter("quantity"));
