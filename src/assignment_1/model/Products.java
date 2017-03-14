@@ -269,6 +269,19 @@ public class Products {
 			
 
 			if(aProduct.ID == id){
+				ProductsInfo info = new ProductsInfo();
+				//System.out.println(aFullProduct.productName);
+				String category = info.returnCategoryByCategoryID(aProduct.productCategoryIndex);
+				String sellerName = info.returnSellerNameByUserID(aProduct.sellerId);
+				ProductsInfo reviewInfo = info.returnReviewBeanByProductID(aProduct.ID);
+
+				aProduct.setProductCategory(category);
+				aProduct.setSellerName(sellerName);
+				aProduct.setRating(reviewInfo.rating);
+				aProduct.setReviewDate(reviewInfo.reviewDate);
+				aProduct.setReview(reviewInfo.review);
+				
+				
 				DB.closeConnection();
 				return aProduct;
 				
