@@ -166,7 +166,7 @@
     </div>
       
       
-        <input type="hidden" name="ID" value="<c:out value="${selectedProduct.ID}" />">
+       <input type="hidden" name="ID" value="<c:out value="${selectedProduct.ID}" />">
        <button type="submit" class="btn btn-success"> Add to Cart</button>
         </form>
       

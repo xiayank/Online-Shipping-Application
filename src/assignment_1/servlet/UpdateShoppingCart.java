@@ -35,6 +35,7 @@ public class UpdateShoppingCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Products aProduct = new Products();
+		System.out.println( "xx");
 		ArrayList<ShoppingCartBean> shoppingCartList = null;
 		if(session.getAttribute("shoppingCartList") == null){
 			shoppingCartList = new ArrayList<ShoppingCartBean>();
@@ -92,8 +93,12 @@ public class UpdateShoppingCart extends HttpServlet {
 		//check the available quantity, the quantity at most equal to available quantity
 		for(ShoppingCartBean aShoppingCartItem :shoppingCartList ){
 			int aAvailableQuantity = aShoppingCartItem.getaProduct().getAvailableQuantity(); 
-			if(aAvailableQuantity < aShoppingCartItem.getRequestQuantity()){
+			//System.out.println(aAvailableQuantity);
+			//System.out.println(aShoppingCartItem.getRequestQuantity());
+			if(aAvailableQuantity <= aShoppingCartItem.getRequestQuantity()){
 				aShoppingCartItem.setRequestQuantity(aAvailableQuantity);
+			}else{
+				
 			}
 			
 		}
