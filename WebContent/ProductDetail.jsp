@@ -10,6 +10,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+			function updateShoppingCart() {
+				var quantity = $("#quantity").val();
+				
+			
+			   
+			    	// Sending request to servlet of the same app
+			       $.get("UpdateShoppingCart", {quantity:quantity}, function(data,status) {
+			    	
+					        $("#results").load("Success.txt");
+					
+			  }
+		</script>
   <style>
 
      .carousel-inner img {
@@ -153,7 +166,7 @@
     </div>
   </div>
   <div class="col-sm-4">
-  <form action = "UpdateShoppingCart" method = "post"  />
+ 
     <h2>${selectedProduct.productName}</h2><br>
     <h4>Price<code> ${selectedProduct.price }$</code></h4>
     <h4>Seller <code> ${selectedProduct.sellerName }</code></h4>
@@ -167,8 +180,8 @@
       
       
         <input type="hidden" name="ID" value="<c:out value="${selectedProduct.ID}" />">
-       <button type="submit" class="btn btn-success"> Add to Cart</button>
-        </form>
+       <button type="submit" class="btn btn-success" onClick="updateShoppingCart()"> Add to Cart</button>
+        <p id="results"> </p>
       
       
 
@@ -256,9 +269,12 @@
     </div>
   </div>
 
+	
      
 
 </div>
+
+	
 <hr>
 
     </body>
